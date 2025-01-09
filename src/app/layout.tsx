@@ -1,11 +1,11 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Onest } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const onest = Onest({
   subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} antialiased`}
+        className={`${onest.className} antialiased`}
       >
         {children}
       </body>
