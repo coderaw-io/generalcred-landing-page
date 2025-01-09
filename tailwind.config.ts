@@ -10,6 +10,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
+				'primary-gold': '#d4ad68',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
