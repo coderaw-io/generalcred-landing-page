@@ -8,16 +8,23 @@ export function Footer() {
       <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="flex flex-col space-y-6">
-            <Image
-              src={logoGeneralCred}
-              alt="Logo General Cred"
-              width={100}
-              height={100}
-            />
+            <div className="grid grid-cols-1 items-center gap-3">
+              <Image
+                src={logoGeneralCred}
+                alt="Logo General Cred"
+                width={100}
+                height={100}
+              />
 
-            <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground pr-6">
+                Conte conosco para uma orientação confiável e um apoio dedicado, queremos ser
+                parte dos seus planos e das suas soluções. Experimente uma consultoria que realmente se importe com você
+              </p>
+            </div>
+
+            <span className="text-sm text-muted-foreground">
               © 2021 GeneralCred - 49.518.511/0001-99.
-            </p>
+            </span>
 
             <div className="flex space-x-6 text-muted-foreground">
               <a
@@ -64,7 +71,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 pt-6 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
             <div>
               <p className="font-medium text-primary">
                 Contato
