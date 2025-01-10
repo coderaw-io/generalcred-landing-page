@@ -28,13 +28,13 @@ export function PersonalDataForm() {
   }
 
   return (
-    <div className="max-w-8xl mx-auto px-4 py-8 md:py-12 lg:pt-16 lg:pb-24">
-      <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
+    <div className="max-w-8xl mx-auto px-4 py-12 md:px-8 md:py-16 lg:pt-16 lg:pb-24 lg:px-12 xl:px-0">
+      <div className="w-full flex flex-col space-y-12 lg:space-y-0 lg:flex-row lg:justify-between items-center">
         <HeroSection />
 
-        <div className="bg-white lg:w-[85%] p-12 shadow-sm rounded-[0.3rem] space-y-6">
+        <div className="bg-white p-6 space-y-6 shadow-sm rounded-[0.3rem] md:w-full md:p-10 lg:w-[85%] lg:p-12">
           <div className="space-y-2">
-            <h1 className="text-2xl font-semibold">
+            <h1 className="text-xl font-semibold md:text-2xl">
               Estamos quase lá. Para ver o resultado da <br />
               sua simulação, informe seus dados
             </h1>

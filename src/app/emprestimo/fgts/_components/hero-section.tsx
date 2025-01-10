@@ -4,7 +4,7 @@ import Image from "next/image";
 export function HeroSection() {
   return (
     <div className="w-full relative text-white space-y-8">
-      <h1 className="max-w-2xl w-full text-4xl md:text-5xl font-bold leading-tight">
+      <h1 className="max-w-2xl w-full text-3xl md:text-5xl font-bold leading-tight">
         ANTECIPE ATÉ {" "}
         <span className="text-primary-gold">7 PARCELAS</span> DO SEU SAQUE
         ANIVERSÁRIO FGTS
@@ -28,7 +28,7 @@ export function HeroSection() {
       <Image 
         src={heroImg} 
         alt="Passo 5" 
-        className="object-cover w-[90%] rounded-[0.3rem]" 
+        className="object-cover w-full rounded-[0.3rem] md:w-[90%]" 
       />
     </div>
   )
