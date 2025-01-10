@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 
+import {
+  BadgeDollarSignIcon,
+  CalendarIcon,
+  FingerprintIcon,
+  MailIcon,
+  PhoneCallIcon,
+  UserIcon
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -41,8 +50,12 @@ export function PersonalDataForm() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="fgtsBalance">Saldo do FGTS</Label>
+            <div className="space-y-4">
+              <Label htmlFor="fgtsBalance" className="flex items-center gap-2">
+                <BadgeDollarSignIcon className="size-5" />
+                Saldo do FGTS
+              </Label>
+
               <Input
                 id="fgtsBalance"
                 placeholder="Informe seu saldo do FGTS"
@@ -51,8 +64,12 @@ export function PersonalDataForm() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="name">Nome</Label>
+            <div className="space-y-4">
+              <Label htmlFor="name" className="flex items-center gap-2">
+                <UserIcon className="size-5" />
+                Nome
+              </Label>
+
               <Input
                 id="name"
                 placeholder="Informe seu nome completo"
@@ -62,8 +79,12 @@ export function PersonalDataForm() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="cpf">CPF</Label>
+              <div className="space-y-4">
+                <Label htmlFor="cpf" className="flex items-center gap-2">
+                  <FingerprintIcon className="size-4" />
+                  CPF
+                </Label>
+
                 <Input
                   id="cpf"
                   placeholder="000.000.000-00"
@@ -72,8 +93,12 @@ export function PersonalDataForm() {
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="birthDate">Data de nascimento</Label>
+              <div className="space-y-4">
+                <Label htmlFor="birthDate" className="flex items-center gap-2">
+                  <CalendarIcon className="size-4" />
+                  Data de nascimento
+                </Label>
+
                 <Input
                   id="birthDate"
                   placeholder="00/00/0000"
@@ -83,8 +108,11 @@ export function PersonalDataForm() {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Celular com DDD</Label>
+            <div className="space-y-4">
+              <Label htmlFor="phone" className="flex items-center gap-2">
+                <PhoneCallIcon className="size-4" />
+                Celular com DDD
+              </Label>
               <Input
                 id="phone"
                 placeholder="(00) 00000-0000"
@@ -93,8 +121,12 @@ export function PersonalDataForm() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+            <div className="space-y-4">
+              <Label htmlFor="email" className="flex items-center gap-2">
+                <MailIcon className="size-4" />
+                E-mail
+              </Label>
+
               <Input
                 id="email"
                 type="email"
@@ -118,7 +150,7 @@ export function PersonalDataForm() {
                 <label htmlFor="privacy" className="text-sm">
                   Autorizo a Generalcred a tratar meus dados pessoais e também estou de acordo <br />
                   com a {" "}
-                  <Link href="#" className="text-slate-950/70 hover:underline">
+                  <Link href="#" className="text-slate-950/70 italic hover:underline">
                     Política de Privacidade
                   </Link>
                   .
@@ -135,7 +167,11 @@ export function PersonalDataForm() {
                 />
 
                 <label htmlFor="contact" className="text-sm">
-                  Permito que a Generalcred entre em contato comigo.
+                  Permito que a {" "}
+                  <span className="text-slate-950/70 italic hover:underline">
+                    Generalcred
+                  </span> {" "}
+                  entre em contato comigo.
                 </label>
               </div>
             </div>
