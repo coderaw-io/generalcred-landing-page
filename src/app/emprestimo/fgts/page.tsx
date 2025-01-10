@@ -1,4 +1,4 @@
-import { Carousel } from "@/components/shared/carousel"
+import { CarouselSection } from "@/components/shared/carousel"
 import { FAQSection } from "@/components/shared/faq-section"
 import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
@@ -11,7 +11,7 @@ export default function FgtsPage() {
       <main className="pt-12 md:pt-16">
         <PersonalDataForm />
       </main>
-      <Carousel />
+      <CarouselSection />
       <FAQSection />
       <Footer />
     </div>
