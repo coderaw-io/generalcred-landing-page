@@ -6,9 +6,9 @@ import { PersonalDataForm } from "./_components/form"
 
 export default function FgtsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950">
       <Header />
-      <main className="pt-12 md:pt-16">
+      <main className="w-full pt-12 md:pt-16">
         <PersonalDataForm />
       </main>
       <CarouselSection />

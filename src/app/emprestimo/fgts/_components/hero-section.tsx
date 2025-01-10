@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <div className="w-full relative text-white space-y-8">
+    <div className="w-full text-white space-y-8 lg:relative">
       <h1 className="max-w-2xl w-full text-3xl md:text-5xl font-bold leading-tight">
         ANTECIPE ATÉ {" "}
         <span className="text-primary-gold">7 PARCELAS</span> DO SEU SAQUE
