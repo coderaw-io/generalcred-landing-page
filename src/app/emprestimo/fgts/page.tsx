@@ -1,6 +1,6 @@
 import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
-import { PersonalDataForm } from "./form"
+import { PersonalDataForm } from "./_components/form"
 
 export default function FgtsPage() {
   return (
