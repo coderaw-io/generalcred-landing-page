@@ -6,7 +6,7 @@ import { ShieldCheckIcon } from 'lucide-react'
 
 export function Header() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950 px-6 lg:px-12 xl:px-0">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950 px-6 lg:px-12 2xl:px-0">
       <div className="max-w-8xl w-full mx-auto flex items-center justify-between">
         <Link href="/" className="w-32 flex items-center space-x-2">
           <Image
