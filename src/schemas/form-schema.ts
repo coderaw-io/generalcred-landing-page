@@ -1,7 +1,7 @@
 import * as z from "zod"
 
 export const formSchema = z.object({
-  fgtsBalance: z.string().min(1, "Saldo do FGTS é obrigatório"),
+  fgtsBalance: z.string().max(17, "Saldo do FGTS deve ter no máximo 17 caracteres").min(1, "Saldo do FGTS é obrigatório"),
   name: z.string().max(100, "Nome deve ter no máximo 100 caracteres").min(1, "Nome é obrigatório"),
   cpf: z.string().length(14, "CPF deve conter 11 dígitos").min(1, "CPF é obrigatório"),
   birthDate: z.string().length(10, "Data de nascimento deve conter 8 dígitos").min(1, "Data de nascimento é obrigatória"),

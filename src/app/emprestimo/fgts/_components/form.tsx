@@ -25,7 +25,12 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { formSchema } from "@/schemas/form-schema"
+import { maskBirthdate } from "@/utils/mask-birthdate"
+import { maskDocument } from "@/utils/mask-document"
+import { maskMoney } from "@/utils/mask-money"
+import { maskPhoneNumber } from "@/utils/mask-phone-number"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { HeroSection } from "./hero-section"
 import { WhatsappButton } from "./whatsapp-button"
@@ -44,6 +49,27 @@ export function PersonalDataForm() {
       contact: false,
     },
   })
+
+  const balance = form.watch("fgtsBalance")
+  const document = form.watch("cpf")
+  const birthdate = form.watch("birthDate")
+  const phoneNumber = form.watch("phone")
+
+  useEffect(() => {
+    if (balance !== undefined || document !== undefined ||
+      phoneNumber !== undefined || birthdate !== undefined) {
+      form.setValue("fgtsBalance", maskMoney(balance))
+      form.setValue("cpf", maskDocument(document))
+      form.setValue("birthDate", maskBirthdate(birthdate))
+      form.setValue("phone", maskPhoneNumber(phoneNumber))
+    }
+  }, [
+    balance,
+    document,
+    birthdate,
+    phoneNumber,
+    form.setValue
+  ]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
@@ -74,7 +100,7 @@ export function PersonalDataForm() {
                       Saldo do FGTS
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Informe seu saldo do FGTS" {...field} />
+                      <Input placeholder="Informe seu saldo do FGTS" maxLength={17} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -91,7 +117,7 @@ export function PersonalDataForm() {
                       Nome
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Informe seu nome completo" {...field} />
+                      <Input placeholder="Informe seu nome completo" maxLength={100} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -109,7 +135,7 @@ export function PersonalDataForm() {
                         CPF
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="00000000000" {...field} />
+                        <Input placeholder="000.000.000-00" maxLength={14} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -126,7 +152,7 @@ export function PersonalDataForm() {
                         Data de nascimento
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="00000000" {...field} />
+                        <Input placeholder="00/00/0000" maxLength={10} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -144,7 +170,7 @@ export function PersonalDataForm() {
                       Celular com DDD
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="00000000000" {...field} />
+                      <Input placeholder="(00) 00000-0000" maxLength={15} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -161,7 +187,7 @@ export function PersonalDataForm() {
                       E-mail
                     </FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="email@email.com.br" {...field} />
+                      <Input type="email" placeholder="email@email.com.br" maxLength={100} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
