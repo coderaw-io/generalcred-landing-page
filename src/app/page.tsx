@@ -1,19 +1,17 @@
 "use client"
-import fgtsImg from "@/app/assets/images/fgts.jpg";
-import generalcredfgtst from "@/app/assets/images/fgts-img-bg.jpg";
+
+import step1Img from "@/assets/images/carousel-steps-lp-1.jpg";
+import step2Img from "@/assets/images/carousel-steps-lp-2.jpg";
+import step3Img from "@/assets/images/carousel-steps-lp-3.jpg";
+import step4Img from "@/assets/images/carousel-steps-lp-4.jpg";
+import step5Img from "@/assets/images/carousel-steps-lp-5.jpg";
+import generalcredfgtst from "@/assets/images/fgts-img-bg.jpg";
+import Image from "next/image";
+import Link from "next/link";
+import 'swiper/swiper-bundle.min.css';
+
 import { Button } from "@/components/ui/button";
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/swiper-bundle.min.css'; 
-import Image from "next/image";
-
-
-// Imagens para o carrossel
-import step1Img from "@/app/assets/images/carousel-steps-lp-1.jpg";
-import step2Img from "@/app/assets/images/carousel-steps-lp-2.jpg";
-import step3Img from "@/app/assets/images/carousel-steps-lp-3.jpg";
-import step4Img from "@/app/assets/images/carousel-steps-lp-4.jpg";
-import step5Img from "@/app/assets/images/carousel-steps-lp-5.jpg";
-
 
 export default function Home() {
   return (
@@ -27,6 +25,7 @@ export default function Home() {
           height={400}
         />
       </div>
+
       <section
         className="relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-between px-6"
         style={{
@@ -40,6 +39,7 @@ export default function Home() {
             <h1 className="text-2xl font-bold mb-6">
               Vamos movimentar seu FGTS?
             </h1>
+
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <p className="text-2xl">Receba na hora via Pix</p>
@@ -48,6 +48,15 @@ export default function Home() {
                 <p className="text-2xl">Mais rápido e seguro que todos</p>
               </div>
             </div>
+
+            <Link href="emprestimo/fgts">
+              <Button
+                type="button"
+                className="mt-6 py-4 px-6"
+              >
+                Ver a nova tela de teste
+              </Button>
+            </Link>
           </div>
 
           <div className="w-full md:w-1/2 bg-white text-slate-900 p-9 rounded-lg shadow-2xl">
