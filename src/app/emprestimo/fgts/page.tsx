@@ -1,4 +1,4 @@
-import Carousel from "@/components/shared/carousel"
+import { Carousel } from "@/components/shared/carousel"
 import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
 import { PersonalDataForm } from "./_components/form"

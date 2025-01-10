@@ -1,9 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
-import Image from "next/image";
 import 'swiper/swiper-bundle.min.css';
 
 // Import your images
@@ -107,4 +106,4 @@ const Carousel: React.FC = () => {
   );
 };
 
-export default Carousel;
+export { Carousel };
