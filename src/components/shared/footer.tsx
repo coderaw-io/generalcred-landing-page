@@ -8,7 +8,7 @@ export function Footer() {
       <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="flex flex-col space-y-6">
-            <div className="grid grid-cols-1 items-center gap-3">
+            <div className="grid grid-cols-1 items-center gap-1.5">
               <Image
                 src={logoGeneralCred}
                 alt="Logo General Cred"

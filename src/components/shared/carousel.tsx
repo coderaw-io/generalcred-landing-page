@@ -1,14 +1,14 @@
 'use client'
 
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import Image from "next/image";
 
 import step1Img from "@/assets/images/carousel-steps-lp-1.jpg";
 import step2Img from "@/assets/images/carousel-steps-lp-2.jpg";
@@ -46,8 +46,8 @@ const slides = [
 
 export function CarouselSection() {
   return (
-    <div className="py-12 bg-gradient-to-b from-blue-50 to-white">
-      <Carousel className="w-full max-w-5xl mx-auto">
+    <div className="bg-white">
+      <Carousel className="py-12 w-full max-w-5xl mx-auto">
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
@@ -60,12 +60,17 @@ export function CarouselSection() {
                         alt={slide.title}
                         width={400}
                         height={800}
-                        className="w-full h-auto object-contain"
+                        className="w-[90%] h-auto object-contain"
                       />
                     </div>
                     <div className="w-full md:w-1/2 space-y-4">
-                      <h2 className="text-2xl font-bold text-gray-900">{slide.title}</h2>
-                      <p className="text-gray-600">{slide.description}</p>
+                      <h2 className="text-4xl font-bold text-primary">
+                        {slide.title}
+                      </h2>
+
+                      <p className="text-muted-foreground text-lg">
+                        {slide.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
