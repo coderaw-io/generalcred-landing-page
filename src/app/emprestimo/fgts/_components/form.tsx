@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/form"
 
 import {
-  BadgeDollarSignIcon,
   CalendarIcon,
   FingerprintIcon,
   MailIcon,
@@ -27,7 +26,6 @@ import { Input } from "@/components/ui/input"
 import { formSchema } from "@/schemas/form-schema"
 import { maskBirthdate } from "@/utils/mask-birthdate"
 import { maskDocument } from "@/utils/mask-document"
-import { maskMoney } from "@/utils/mask-money"
 import { maskPhoneNumber } from "@/utils/mask-phone-number"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
@@ -39,7 +37,6 @@ export function PersonalDataForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fgtsBalance: "",
       name: "",
       cpf: "",
       birthDate: "",
@@ -50,21 +47,18 @@ export function PersonalDataForm() {
     },
   })
 
-  const balance = form.watch("fgtsBalance")
   const document = form.watch("cpf")
   const birthdate = form.watch("birthDate")
   const phoneNumber = form.watch("phone")
 
   useEffect(() => {
-    if (balance !== undefined || document !== undefined ||
+    if (document !== undefined ||
       phoneNumber !== undefined || birthdate !== undefined) {
-      form.setValue("fgtsBalance", maskMoney(balance))
       form.setValue("cpf", maskDocument(document))
       form.setValue("birthDate", maskBirthdate(birthdate))
       form.setValue("phone", maskPhoneNumber(phoneNumber))
     }
   }, [
-    balance,
     document,
     birthdate,
     phoneNumber,
@@ -90,23 +84,6 @@ export function PersonalDataForm() {
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="fgtsBalance"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2">
-                      <BadgeDollarSignIcon className="size-5" />
-                      Saldo do FGTS
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder="Informe seu saldo do FGTS" maxLength={17} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <FormField
                 control={form.control}
                 name="name"
