@@ -21,7 +21,7 @@ export function HeroSection() {
         </li>
         <li className="flex items-center">
           <span className="h-3 w-3 bg-primary-gold rounded-full inline-block mr-3"></span>
-          É simples e não precisa ter conta no Safra
+          É simples e não precisa criar uma conta
         </li>
       </ul>
 

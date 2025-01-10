@@ -1,6 +1,16 @@
 'use client'
 
-import Link from "next/link";
+import Link from "next/link"
+import * as z from "zod"
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "@/components/ui/form"
 
 import {
   BadgeDollarSignIcon,
@@ -9,31 +19,34 @@ import {
   MailIcon,
   PhoneCallIcon,
   UserIcon
-} from "lucide-react";
+} from 'lucide-react'
 
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { HeroSection } from "./hero-section";
-import { WhatsappButton } from "./whatsapp-button";
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { formSchema } from "@/schemas/form-schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { HeroSection } from "./hero-section"
+import { WhatsappButton } from "./whatsapp-button"
 
 export function PersonalDataForm() {
-  const [formData, setFormData] = useState({
-    fgtsBalance: '',
-    name: '',
-    cpf: '',
-    birthDate: '',
-    phone: '',
-    email: '',
-    privacyPolicy: false,
-    contact: false
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      fgtsBalance: "",
+      name: "",
+      cpf: "",
+      birthDate: "",
+      phone: "",
+      email: "",
+      privacyPolicy: false,
+      contact: false,
+    },
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log(formData)
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
   }
 
   return (
@@ -49,141 +62,171 @@ export function PersonalDataForm() {
             </h1>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-4">
-              <Label htmlFor="fgtsBalance" className="flex items-center gap-2">
-                <BadgeDollarSignIcon className="size-5" />
-                Saldo do FGTS
-              </Label>
-
-              <Input
-                id="fgtsBalance"
-                placeholder="Informe seu saldo do FGTS"
-                value={formData.fgtsBalance}
-                onChange={(e) => setFormData({ ...formData, fgtsBalance: e.target.value })}
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="fgtsBalance"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <BadgeDollarSignIcon className="size-5" />
+                      Saldo do FGTS
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="Informe seu saldo do FGTS" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="space-y-4">
-              <Label htmlFor="name" className="flex items-center gap-2">
-                <UserIcon className="size-5" />
-                Nome
-              </Label>
-
-              <Input
-                id="name"
-                placeholder="Informe seu nome completo"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <UserIcon className="size-5" />
+                      Nome
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="Informe seu nome completo" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <Label htmlFor="cpf" className="flex items-center gap-2">
-                  <FingerprintIcon className="size-4" />
-                  CPF
-                </Label>
+              <div className="grid md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="cpf"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2">
+                        <FingerprintIcon className="size-4" />
+                        CPF
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="00000000000" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                <Input
-                  id="cpf"
-                  placeholder="000.000.000-00"
-                  value={formData.cpf}
-                  onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+                <FormField
+                  control={form.control}
+                  name="birthDate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2">
+                        <CalendarIcon className="size-4" />
+                        Data de nascimento
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="00000000" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
 
-              <div className="space-y-4">
-                <Label htmlFor="birthDate" className="flex items-center gap-2">
-                  <CalendarIcon className="size-4" />
-                  Data de nascimento
-                </Label>
-
-                <Input
-                  id="birthDate"
-                  placeholder="00/00/0000"
-                  value={formData.birthDate}
-                  onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <Label htmlFor="phone" className="flex items-center gap-2">
-                <PhoneCallIcon className="size-4" />
-                Celular com DDD
-              </Label>
-              <Input
-                id="phone"
-                placeholder="(00) 00000-0000"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <PhoneCallIcon className="size-4" />
+                      Celular com DDD
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="00000000000" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="space-y-4">
-              <Label htmlFor="email" className="flex items-center gap-2">
-                <MailIcon className="size-4" />
-                E-mail
-              </Label>
-
-              <Input
-                id="email"
-                type="email"
-                placeholder="email@email.com.br"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-2">
+                      <MailIcon className="size-4" />
+                      E-mail
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="email@email.com.br" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="py-6 space-y-4">
-              <div className="flex space-x-2">
-                <Checkbox
-                  id="privacy"
-                  className="mt-1"
-                  checked={formData.privacyPolicy}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, privacyPolicy: checked as boolean })
-                  }
+              <div className="py-6 space-y-4">
+                <FormField
+                  control={form.control}
+                  name="privacyPolicy"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>
+                          Autorizo a Generalcred a tratar meus dados pessoais e também estou de acordo com a{" "}
+                          <Link href="#" className="text-slate-950/70 italic hover:underline">
+                            Política de Privacidade
+                          </Link>
+                          .
+                        </FormLabel>
+                      </div>
+                    </FormItem>
+                  )}
                 />
 
-                <label htmlFor="privacy" className="text-sm">
-                  Autorizo a Generalcred a tratar meus dados pessoais e também estou de acordo <br />
-                  com a {" "}
-                  <Link href="#" className="text-slate-950/70 italic hover:underline">
-                    Política de Privacidade
-                  </Link>
-                  .
-                </label>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="contact"
-                  checked={formData.contact}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, contact: checked as boolean })
-                  }
+                <FormField
+                  control={form.control}
+                  name="contact"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>
+                          Permito que a{" "}
+                          <span className="text-slate-950/70 italic hover:underline">
+                            Generalcred
+                          </span>{" "}
+                          entre em contato comigo.
+                        </FormLabel>
+                      </div>
+                    </FormItem>
+                  )}
                 />
-
-                <label htmlFor="contact" className="text-sm">
-                  Permito que a {" "}
-                  <span className="text-slate-950/70 italic hover:underline">
-                    Generalcred
-                  </span> {" "}
-                  entre em contato comigo.
-                </label>
               </div>
-            </div>
 
-            <Button
-              type="submit"
-              className="disabled:bg-secondary w-full hover:bg-primary hover:text-primary-gold"
-              disabled={!formData.privacyPolicy}
-            >
-              Ver resultado da simulação
-            </Button>
-          </form>
+              <Button
+                type="submit"
+                className="w-full hover:bg-primary hover:text-primary-gold"
+                disabled={!form.formState.isValid || !form.watch("privacyPolicy")}
+              >
+                Ver resultado da simulação
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
 
@@ -191,4 +234,3 @@ export function PersonalDataForm() {
     </div>
   )
 }
-
