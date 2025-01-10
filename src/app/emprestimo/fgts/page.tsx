@@ -6,7 +6,9 @@ export default function FgtsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950">
       <Header />
-      <PersonalDataForm />
+      <main className="pt-12 md:pt-16">
+        <PersonalDataForm />
+      </main>
       <Footer />
     </div>
   )
