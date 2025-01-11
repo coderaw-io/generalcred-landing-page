@@ -8,11 +8,11 @@ export const formSchema = z.object({
   name: z
     .string()
     .max(100, "Nome deve ter no máximo 100 caracteres")
-    .min(1, "Nome é obrigatório"),
+    .min(1, "O nome completo é obrigatório"),
   cpf: z
     .string()
     .length(14, "CPF deve conter 11 dígitos")
-    .min(1, "CPF é obrigatório"),
+    .min(1, "O CPF é obrigatório"),
   birthDate: z
     .string()
     .length(10, "Data de nascimento deve conter 8 dígitos")
@@ -31,12 +31,12 @@ export const formSchema = z.object({
   phone: z
     .string()
     .length(15, "Telefone deve conter 11 dígitos (DDD + número)")
-    .min(1, "Telefone é obrigatório"),
+    .min(1, "O telefone é obrigatório"),
   email: z
     .string()
-    .email("E-mail inválido")
+    .email("O e-mail informado é inválido")
     .max(100, "E-mail deve ter no máximo 100 caracteres")
-    .min(1, "E-mail é obrigatório"),
+    .min(1, "O e-mail é obrigatório"),
   privacyPolicy: z
     .boolean()
     .refine(val => val === true, "Você deve aceitar a Política de Privacidade"),

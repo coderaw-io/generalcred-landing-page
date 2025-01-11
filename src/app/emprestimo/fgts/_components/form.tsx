@@ -52,8 +52,7 @@ export function PersonalDataForm() {
   const phoneNumber = form.watch("phone")
 
   useEffect(() => {
-    if (document !== undefined ||
-      phoneNumber !== undefined || birthdate !== undefined) {
+    if (document !== undefined || phoneNumber !== undefined || birthdate !== undefined) {
       form.setValue("cpf", maskDocument(document))
       form.setValue("birthDate", maskBirthdate(birthdate))
       form.setValue("phone", maskPhoneNumber(phoneNumber))
@@ -70,11 +69,11 @@ export function PersonalDataForm() {
   }
 
   return (
-    <div className="w-ful px-4 py-12 md:px-8 md:py-16 lg:max-w-8xl lg:w-full lg:mx-auto lg:pt-16 lg:pb-24 lg:px-12 2xl:px-0">
+    <div className="w-ful px-0 py-16 rounded-none sm:py-12 md:px-8 md:py-16 lg:max-w-8xl lg:w-full lg:mx-auto lg:pt-16 lg:pb-24 lg:px-12 2xl:px-0">
       <div className="w-full flex flex-col items-center space-y-12 lg:space-y-0 lg:flex-row lg:justify-between">
         <HeroSection />
 
-        <div className="bg-white p-6 space-y-6 shadow-sm rounded-[0.3rem] md:w-full md:p-10 lg:w-[85%] lg:p-12 xl:p-8">
+        <div className="bg-white py-8 px-6 space-y-6 shadow-sm sm:py-6 sm:rounded-[0.3rem] md:w-full md:p-10 lg:w-[85%] lg:p-12 xl:p-8">
           <div className="space-y-2">
             <h1 className="text-xl font-semibold md:text-2xl">
               Estamos quase lá. Para ver o resultado da <br />
@@ -224,7 +223,7 @@ export function PersonalDataForm() {
               <Button
                 type="submit"
                 className="w-full hover:bg-primary hover:text-primary-gold"
-                disabled={!form.formState.isValid || !form.watch("privacyPolicy")}
+                disabled={!form.watch("privacyPolicy")}
               >
                 Ver resultado da simulação
               </Button>

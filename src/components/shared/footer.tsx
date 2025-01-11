@@ -1,13 +1,12 @@
 import logoGeneralCred from "@/assets/images/logo-general-cred.png";
 import Image from 'next/image';
 
-
 export function Footer() {
   return (
-    <footer className="bg-white">
-      <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          <div className="flex flex-col space-y-6">
+    <footer className="w-full bg-white">
+      <div className="max-w-screen-2xl w-full mx-auto px-6 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 lg:flex lg:justify-between lg:items-center">
+          <div className="max-w-md w-full flex flex-col space-y-6">
             <div className="grid grid-cols-1 items-center gap-1.5">
               <Image
                 src={logoGeneralCred}
