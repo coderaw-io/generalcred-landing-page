@@ -28,7 +28,7 @@ export function ProposalsDialog({ isOpen, onOpenChange }: ProposalsDialogProps) 
           <LoanProposals />
         </main>
         <Separator />
-        <AlertDialogFooter className="pb-6 px-6 pt-3 gap-6">
+        <AlertDialogFooter className="pb-12 px-6 pt-3 gap-3 sm:gap-6 sm:pb-6">
           <AlertDialogCancel className="flex items-center gap-2 h-11 rounded-md text-slate-950 px-8 border-none hover:bg-border">
             <ArrowLeftIcon className="size-2/5" />
             Voltar
