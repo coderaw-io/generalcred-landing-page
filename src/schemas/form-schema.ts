@@ -1,10 +1,6 @@
 import * as z from "zod";
 
 export const formSchema = z.object({
-  fgtsBalance: z
-    .string()
-    .max(17, "Saldo do FGTS deve ter no máximo 17 caracteres")
-    .min(1, "Saldo do FGTS é obrigatório"),
   name: z
     .string()
     .max(100, "Nome deve ter no máximo 100 caracteres")

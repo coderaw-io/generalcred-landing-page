@@ -15,6 +15,7 @@ import {
 import {
   CalendarIcon,
   FingerprintIcon,
+  LoaderCircleIcon,
   MailIcon,
   PhoneCallIcon,
   UserIcon
@@ -24,12 +25,14 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { formSchema } from "@/schemas/form-schema"
+import { BalanceService } from "@/services/balance-service"
 import { maskBirthdate } from "@/utils/mask-birthdate"
 import { maskDocument } from "@/utils/mask-document"
 import { maskPhoneNumber } from "@/utils/mask-phone-number"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from 'react-hot-toast'
 import { HeroSection } from "./hero-section"
 import { WhatsappButton } from "./whatsapp-button"
 
@@ -45,17 +48,17 @@ export function PersonalDataForm() {
       privacyPolicy: false,
       contact: false,
     },
-  })
+  });
 
-  const document = form.watch("cpf")
-  const birthdate = form.watch("birthDate")
-  const phoneNumber = form.watch("phone")
+  const document = form.watch("cpf");
+  const birthdate = form.watch("birthDate");
+  const phoneNumber = form.watch("phone");
 
   useEffect(() => {
     if (document !== undefined || phoneNumber !== undefined || birthdate !== undefined) {
-      form.setValue("cpf", maskDocument(document))
-      form.setValue("birthDate", maskBirthdate(birthdate))
-      form.setValue("phone", maskPhoneNumber(phoneNumber))
+      form.setValue("cpf", maskDocument(document));
+      form.setValue("birthDate", maskBirthdate(birthdate));
+      form.setValue("phone", maskPhoneNumber(phoneNumber));
     }
   }, [
     document,
@@ -64,8 +67,20 @@ export function PersonalDataForm() {
     form.setValue
   ]);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    try {
+      const formData = {
+        name: data.name,
+        cpf: data.cpf,
+        phonenumber: data.phone,
+        email: data.email
+      };
+
+      await BalanceService.getFgtsBalance(formData);
+      toast.success("Busca realizada com sucesso.");
+    } catch {
+      toast.error("Erro ao simular sua proposta! Tente novamente.")
+    }
   }
 
   return (
@@ -225,7 +240,12 @@ export function PersonalDataForm() {
                 className="w-full hover:bg-primary hover:text-primary-gold"
                 disabled={!form.watch("privacyPolicy")}
               >
-                Ver resultado da simulação
+                {form.formState.isSubmitting ? (
+                  <div className="flex items-center gap-2">
+                    Consultando
+                    <LoaderCircleIcon className="size-4 animate-spin" />
+                  </div>
+                ) : "Ver resultado da simulação"}
               </Button>
             </form>
           </Form>
