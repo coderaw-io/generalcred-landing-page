@@ -30,10 +30,11 @@ import { maskBirthdate } from "@/utils/mask-birthdate"
 import { maskDocument } from "@/utils/mask-document"
 import { maskPhoneNumber } from "@/utils/mask-phone-number"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from 'react-hot-toast'
 import { HeroSection } from "./hero-section"
+import { ProposalsDialog } from "./proposals-dialog"
 import { WhatsappButton } from "./whatsapp-button"
 
 export function PersonalDataForm() {
@@ -53,6 +54,8 @@ export function PersonalDataForm() {
   const document = form.watch("cpf");
   const birthdate = form.watch("birthDate");
   const phoneNumber = form.watch("phone");
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     if (document !== undefined || phoneNumber !== undefined || birthdate !== undefined) {
@@ -78,6 +81,7 @@ export function PersonalDataForm() {
 
       await BalanceService.getFgtsBalance(formData);
       toast.success("Busca realizada com sucesso.");
+      setIsDialogOpen(true);
     } catch {
       toast.error("Erro ao simular sua proposta! Tente novamente.")
     }
@@ -241,16 +245,18 @@ export function PersonalDataForm() {
                 disabled={!form.watch("privacyPolicy")}
               >
                 {form.formState.isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    Consultando
                     <LoaderCircleIcon className="size-4 animate-spin" />
-                  </div>
                 ) : "Ver resultado da simulação"}
               </Button>
             </form>
           </Form>
         </div>
       </div>
+
+      <ProposalsDialog 
+        isOpen={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      />
 
       <WhatsappButton />
     </div>
