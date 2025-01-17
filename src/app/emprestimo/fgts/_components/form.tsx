@@ -245,7 +245,7 @@ export function PersonalDataForm() {
                 disabled={!form.watch("privacyPolicy")}
               >
                 {form.formState.isSubmitting ? (
-                  <LoaderCircleIcon className="size-4 animate-spin" />
+                  <LoaderCircleIcon className="size-5 animate-spin" />
                 ) : "Ver resultado da simulação"}
               </Button>
             </form>

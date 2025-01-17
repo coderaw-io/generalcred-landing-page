@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format, parseISO } from "date-fns";
-import { ChevronDown } from 'lucide-react';
 
 function formatCurrency(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
@@ -10,12 +9,18 @@ function formatCurrency(value: number): string {
   }).format(value).replace('R$', '').trim();
 }
 
+interface PaymentScheduleItem {
+  dueDate: string;
+  payment: number;
+  financeTax: number;
+}
+
 interface ProposalsCardProps {
-  paymentScheduleItems: number
-  totalNetAmountReleased: number
-  liquidValue: number
-  interestRate: string
-  dueDate: string
+  paymentScheduleItems: PaymentScheduleItem[];
+  totalNetAmountReleased: number;
+  liquidValue: number;
+  interestRate: string;
+  dueDate: string;
 }
 
 export function ProposalsCard({
@@ -25,7 +30,7 @@ export function ProposalsCard({
   interestRate,
   dueDate,
 }: ProposalsCardProps) {
-  const formattedDate = format(parseISO(dueDate), "dd/MM/yyyy")
+  const formattedDate = format(parseISO(dueDate), "dd/MM/yyyy");
 
   return (
     <Card className="relative overflow-hidden border-0 bg-slate-50 my-4">
@@ -33,7 +38,7 @@ export function ProposalsCard({
       <CardHeader className="pb-2 pt-6">
         <CardTitle className="sr-only hidden">Propostas</CardTitle>
         <h2 className="text-xl font-bold text-slate-950">
-          PROPOSTA DE {paymentScheduleItems} PARCELAS ANUAIS
+          PROPOSTA DE {paymentScheduleItems.length} PARCELAS ANUAIS
         </h2>
       </CardHeader>
       
@@ -71,12 +76,33 @@ export function ProposalsCard({
           </div>
         </div>
 
-        <div className="flex items-center justify-end">
-          <Button type="button" variant="link" className="flex items-center text-blue-600">
-            VER PARCELAS
-            <ChevronDown className="ml-1 h-4 w-4" />
-          </Button>
-        </div>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="payment-schedule">
+            <AccordionTrigger className="max-w-40 w-full text-blue-600">
+              VER PARCELAS
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-4">
+                {paymentScheduleItems.map((item, index) => (
+                  <div key={index} className="grid grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <span className="text-muted-foreground">Data: </span>
+                      {format(parseISO(item.dueDate), "dd/MM/yyyy")}
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Valor: </span>
+                      {formatCurrency(item.payment / 100)}
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">Taxa: </span>
+                      1,80% a.m
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </CardContent>
     </Card>
   )
