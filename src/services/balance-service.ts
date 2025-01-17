@@ -1,4 +1,4 @@
-import { GetFgtsBalanceRequest } from "@/@types/fgts/balance";
+import { GetFgtsBalanceRequest } from "@/@types/fgts/loan-proposal";
 import { dataClient } from "@/lib/axios";
 
 export class BalanceService {

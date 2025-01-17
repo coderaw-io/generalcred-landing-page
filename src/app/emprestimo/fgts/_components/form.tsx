@@ -24,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { useLoanProposals } from "@/hooks/use-loan-proposals"
 import { formSchema } from "@/schemas/form-schema"
 import { BalanceService } from "@/services/balance-service"
 import { maskBirthdate } from "@/utils/mask-birthdate"
@@ -38,50 +39,49 @@ import { ProposalsDialog } from "./proposals-dialog"
 import { WhatsappButton } from "./whatsapp-button"
 
 export function PersonalDataForm() {
+  const { setFormData, setLoanProposals } = useLoanProposals()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       cpf: "",
       birthDate: "",
-      phone: "",
+      phonenumber: "",
       email: "",
       privacyPolicy: false,
       contact: false,
     },
-  });
+  })
 
-  const document = form.watch("cpf");
-  const birthdate = form.watch("birthDate");
-  const phoneNumber = form.watch("phone");
-
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const document = form.watch("cpf")
+  const birthdate = form.watch("birthDate")
+  const phoneNumber = form.watch("phonenumber")
 
   useEffect(() => {
     if (document !== undefined || phoneNumber !== undefined || birthdate !== undefined) {
-      form.setValue("cpf", maskDocument(document));
-      form.setValue("birthDate", maskBirthdate(birthdate));
-      form.setValue("phone", maskPhoneNumber(phoneNumber));
+      form.setValue("cpf", maskDocument(document))
+      form.setValue("birthDate", maskBirthdate(birthdate))
+      form.setValue("phonenumber", maskPhoneNumber(phoneNumber))
     }
-  }, [
-    document,
-    birthdate,
-    phoneNumber,
-    form.setValue
-  ]);
+  }, [document, birthdate, phoneNumber, form.setValue])
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
       const formData = {
         name: data.name,
         cpf: data.cpf,
-        phonenumber: data.phone,
+        birthDate: data.birthDate,
+        phonenumber: data.phonenumber,
         email: data.email
-      };
+      }
 
-      await BalanceService.getFgtsBalance(formData);
-      toast.success("Busca realizada com sucesso.");
-      setIsDialogOpen(true);
+      setFormData(formData)
+      const response = await BalanceService.getFgtsBalance(formData)
+      setLoanProposals(response)
+      toast.success("Busca realizada com sucesso.")
+      setIsDialogOpen(true)
     } catch {
       toast.error("Erro ao simular sua proposta! Tente novamente.")
     }
@@ -157,7 +157,7 @@ export function PersonalDataForm() {
 
               <FormField
                 control={form.control}
-                name="phone"
+                name="phonenumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
@@ -245,7 +245,7 @@ export function PersonalDataForm() {
                 disabled={!form.watch("privacyPolicy")}
               >
                 {form.formState.isSubmitting ? (
-                    <LoaderCircleIcon className="size-4 animate-spin" />
+                  <LoaderCircleIcon className="size-4 animate-spin" />
                 ) : "Ver resultado da simulação"}
               </Button>
             </form>
@@ -253,12 +253,12 @@ export function PersonalDataForm() {
         </div>
       </div>
 
-      <ProposalsDialog 
+      <WhatsappButton />
+      <ProposalsDialog
         isOpen={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       />
-
-      <WhatsappButton />
     </div>
   )
 }
+

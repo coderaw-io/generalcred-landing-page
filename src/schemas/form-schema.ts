@@ -24,7 +24,7 @@ export const formSchema = z.object({
 
       return age > 18 || (age === 18 && hasHadBirthdayThisYear);
     }, "Você deve ter pelo menos 18 anos para preencher o formulário."),
-  phone: z
+  phonenumber: z
     .string()
     .length(15, "Telefone deve conter 11 dígitos (DDD + número)")
     .min(1, "O telefone é obrigatório"),
