@@ -32,7 +32,7 @@ export function LoanProposals() {
       </div>
 
       <ScrollArea className="h-[420px] md:h-[510px] lg:pr-6">
-        {loanProposals.map((proposal, index) => (
+        {loanProposals.map((proposal) => (
           <ProposalsCard
             key={proposal.product_id}
             paymentScheduleItems={proposal.response.paymentScheduleItems}

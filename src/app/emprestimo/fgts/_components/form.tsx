@@ -65,7 +65,7 @@ export function PersonalDataForm() {
       form.setValue("birthDate", maskBirthdate(birthdate))
       form.setValue("phonenumber", maskPhoneNumber(phoneNumber))
     }
-  }, [document, birthdate, phoneNumber, form.setValue])
+  }, [document, birthdate, phoneNumber, form.setValue, form])
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
