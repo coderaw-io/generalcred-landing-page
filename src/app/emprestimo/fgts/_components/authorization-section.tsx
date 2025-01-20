@@ -17,8 +17,10 @@ export function AuthorizationSection() {
     <div className="flex flex-col space-y-6">
       <div className="space-y-2">
         <span className="text-2xl text-primary-gold font-extrabold">Passo 1</span>
+
         <h1 className="text-2xl font-extrabold">Simular Empréstimo FGTS</h1>
-        <h4 className="text-xl font-semibold">
+
+        <h4 className="text-lg font-semibold sm:text-xl">
           Para realizar a simulação do seu empréstimo FGTS, autorize o banco
           <strong className="italic text-slate-950">UY3 Sociedade de Crédito</strong> {" "}
           no seu aplicativo do FGTS para consultar informações.
@@ -30,7 +32,8 @@ export function AuthorizationSection() {
           src={authorizationImg}
           width={738}
           height={1339}
-          className="w-[37%] object-cover"
+          priority
+          className="w-3/4 object-cover sm:w-[37%]"
           alt="Autorização de consulta no app do FGTS"
         />
       </div>
