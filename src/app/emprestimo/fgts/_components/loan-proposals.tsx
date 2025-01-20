@@ -32,9 +32,10 @@ export function LoanProposals() {
       </div>
 
       <ScrollArea className="h-[420px] md:h-[510px] lg:pr-6">
-        {loanProposals.map((proposal) => (
+        {loanProposals.map((proposal, index) => (
           <ProposalsCard
             key={proposal.product_id}
+            index={index}
             paymentScheduleItems={proposal.response.paymentScheduleItems}
             totalNetAmountReleased={calculateTotalPayment(proposal.response.paymentScheduleItems)}
             liquidValue={parseFloat(proposal.response.liquidValue)}

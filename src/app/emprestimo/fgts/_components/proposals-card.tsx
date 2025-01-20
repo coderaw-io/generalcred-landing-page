@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format, parseISO } from "date-fns";
 
@@ -16,6 +17,7 @@ interface PaymentScheduleItem {
 }
 
 interface ProposalsCardProps {
+  index: number
   paymentScheduleItems: PaymentScheduleItem[];
   totalNetAmountReleased: number;
   liquidValue: number;
@@ -24,6 +26,7 @@ interface ProposalsCardProps {
 }
 
 export function ProposalsCard({
+  index,
   paymentScheduleItems,
   totalNetAmountReleased,
   liquidValue,
@@ -37,11 +40,17 @@ export function ProposalsCard({
       <div className="absolute left-0 top-0 h-full w-2 bg-primary-gold" />
       <CardHeader className="pb-2 pt-6">
         <CardTitle className="sr-only hidden">Propostas</CardTitle>
-        <h2 className="text-xl font-bold text-slate-950">
-          PROPOSTA DE {paymentScheduleItems.length} PARCELAS
-        </h2>
+        <div className="flex justify-between items-center pb-4">
+          <Badge className="px-6 bg-slate-950 text-primary-gold font-semibold">
+            Proposta {index + 1}
+          </Badge>
+
+          <h2 className="text-xl font-bold text-slate-950">
+            PROPOSTA DE {paymentScheduleItems.length} PARCELAS
+          </h2>
+        </div>
       </CardHeader>
-      
+
       <CardContent className="w-full grid gap-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-1">

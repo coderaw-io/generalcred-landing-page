@@ -35,13 +35,14 @@ export function AuthorizationSection() {
         />
       </div>
 
-      <div className="flex flex-row items-start space-x-3 space-y-0">
+      <div className="flex flex-row items-start space-x-2">
         <div>
           <Checkbox
             checked={isChecked}
             onCheckedChange={(checked) => setIsChecked(!!checked)}
           />
         </div>
+
         <div className="space-y-1 leading-none">
           <Label>
             Já autorizei o banco {" "}
