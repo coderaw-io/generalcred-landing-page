@@ -57,14 +57,14 @@ export function LoanSimulator() {
         </div>
       </div>
 
-      <Card className="p-4 bg-slate-50 border-none">
+      <Card className="p-4 bg-gray-100 border-none">
         <div className="flex gap-2">
           <AlertCircle className="h-5 w-5 text-primary-gold flex-shrink-0" />
           <div>
             <p className="font-medium text-primary-gold">
               Simulação com valores aproximados
             </p>
-            <p className="text-sm text-primary-gold">
+            <p className="text-sm text-slate-950">
               Para saber as condições exatas de taxas e valores liberados para você clique {" "}
               no botão &quot;Ver Proposta&quot;.
             </p>

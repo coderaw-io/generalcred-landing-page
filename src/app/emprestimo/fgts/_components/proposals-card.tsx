@@ -41,13 +41,13 @@ export function ProposalsCard({
       <CardHeader className="pb-2 pt-6">
         <CardTitle className="sr-only hidden">Propostas</CardTitle>
         <div className="flex justify-between items-center pb-4">
-          <Badge className="px-6 bg-slate-950 text-primary-gold font-semibold">
-            Proposta {index + 1}
-          </Badge>
-
           <h2 className="text-xl font-bold text-slate-950">
             PROPOSTA DE {paymentScheduleItems.length} PARCELAS
           </h2>
+
+          <Badge className="px-6 bg-slate-950 text-primary-gold font-semibold hover:bg-slate-800">
+            Proposta {index + 1}
+          </Badge>
         </div>
       </CardHeader>
 
