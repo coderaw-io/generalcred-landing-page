@@ -22,35 +22,35 @@ const slides = [
   {
     image: step1Img,
     title: "Bem-vindo ao FGTS Digital",
-    label: "Acesse sua conta FGTS de forma rápida e segura"
+    label: "Acesse sua conta FGTS de forma rápida e segura."
   },
   {
     image: step2Img,
     title: "Saque Aniversário",
-    label: "Consulte as opções disponíveis para seu saque aniversário"
+    label: "Consulte as opções disponíveis para seu saque aniversário."
   },
   {
     image: step3Img,
     title: "Autorização Bancária",
-    label: "Gerencie as autorizações para consulta do seu FGTS"
+    label: "Realize a autorização do banco UY3 para a consulta do seu FGTS."
   },
   {
     image: step4Img,
     title: "Antecipação FGTS",
-    label: "Antecipe seu saque aniversário com as melhores condições"
+    label: "Antecipe seu saque aniversário com as melhores condições."
   },
   {
     image: step5Img,
     title: "Facilidade na palma da mão",
-    label: "Gerencie seu FGTS de qualquer lugar, a qualquer momento"
+    label: "Gerencie seu FGTS de qualquer lugar, a qualquer momento."
   }
 ]
 
 export function CarouselSection() {
   return (
-    <div className="bg-slate-50">
+    <div>
       <Carousel className="py-12 w-full max-w-5xl mx-auto rounded-[0.3rem]">
-        <CarouselContent className="bg-white rounded-[0.3rem]">
+        <CarouselContent className="rounded-[0.3rem]">
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
@@ -62,7 +62,7 @@ export function CarouselSection() {
                         alt={slide.title}
                         width={400}
                         height={800}
-                        className="w-[90%] h-auto object-contain"
+                        className="w-full h-auto object-contain sm:w-[90%]"
                       />
                     </div>
 

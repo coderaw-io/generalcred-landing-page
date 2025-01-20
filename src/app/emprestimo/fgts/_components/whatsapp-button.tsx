@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export function WhatsappButton() {
   return (
-    <div className="fixed bottom-4 right-4">
+    <div className="fixed bottom-4 right-4 z-10">
       <Button className="bg-emerald-400 rounded-full hover:bg-emerald-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
