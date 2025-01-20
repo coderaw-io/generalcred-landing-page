@@ -10,16 +10,15 @@ export function AuthorizationSection() {
   const { nextStep } = useStepper();
 
   return (
-    <>
+    <div className="flex flex-col space-y-6">
       <div className="space-y-2">
         <span className="text-2xl font-extrabold">
           Simular Empréstimo FGTS
         </span>
         <h1 className="text-xl font-semibold">
-          Para realizar a simulação do seu<br />
-          empréstimo FGTS, autorize o banco <br />
-          <strong className="italic text-slate-950">UY3 Sociedade de Crédito</strong> no seu<br />
-          aplicativo do FGTS para consultar informações.
+          Para realizar a simulação do seu empréstimo FGTS, autorize o banco
+          <strong className="italic text-slate-950">UY3 Sociedade de Crédito</strong>
+          no seu aplicativo do FGTS para consultar informações.
         </h1>
       </div>
 
@@ -41,6 +40,10 @@ export function AuthorizationSection() {
       >
         Próxima Etapa
       </Button>
-    </>
+
+      <small className="text-xs text-center text-muted-foreground">
+        Imagens obtidas do aplicativo FGTS da CEF em 02/06/2024, sujeitas a alteração.
+      </small>
+    </div>
   )
 }

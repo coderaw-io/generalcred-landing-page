@@ -38,17 +38,13 @@ export function InformationSection() {
 
       <div className="max-w-2xl w-full py-6">
         <small className="text-xs text-muted-foreground text-center">
-          * Ao optar pelo Saque Aniversário, no caso de rescisão do contrato, terá direito apenas ao
-          saque da multa rescisória. Quem migrar para o saque aniversário e decidir voltar para a sistemática
-          do saque rescisão poderá solicitar a reversão a qualquer momento. Mas a alteração somente surtirá efeito
-          no 1º dia do 25º mês da solicitação desde que o Empréstimo com garantia de saque aniversário FGTS esteja
-          quitado. Aprovação sujeita a consulta e análise cadastral, de crédito e demais condições do produto vigentes
-          no momento da contratação. Exija a sua planilha CET (Custo Efetivo Total) previamente a contratação. A planilha
-          tem a finalidade de informar ao consumidor a taxa efetiva total do seu financiamento considerando todos os encargos
-          e despesas incidentes na operação (taxa de juros ao mês e ao ano, tarifas, seguro prestamista, registro, etc). Empréstimo
-          concedido pelo Banco J. Safra S.A..
-          Parcelas do empréstimo debitadas anualmente direto na(s) conta(s) vinculada(s) do FGTS. Para contratar, é necessário optar
-          pelo saque aniversário no App ou site oficial do FGTS e autorizar o Banco J Safra a consultar o valor disponível.
+          Ao optar pelo Saque Aniversário, em caso de rescisão contratual, o direito será apenas
+          ao saque da multa rescisória. É possível retornar ao Saque Rescisão, mas a mudança só será
+          efetiva no 1º dia do 25º mês após a solicitação, desde que o empréstimo com garantia do
+          Saque Aniversário FGTS esteja quitado. A aprovação está sujeita a análise cadastral e condições
+          vigentes. Solicite a planilha CET antes da contratação para informações detalhadas sobre os custos.
+          Empréstimos concedidos por General Cred, com parcelas debitadas anualmente na conta vinculada do FGTS.
+          Para contratar, opte pelo Saque Aniversário e autorize a consulta ao valor disponível no App ou site oficial do FGTS.
         </small>
       </div>
     </div>

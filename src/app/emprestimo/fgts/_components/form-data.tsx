@@ -86,10 +86,10 @@ export function PersonalDataForm() {
   }
 
   return (
-    <>
+    <div className="pb-6">
       <div className="space-y-2 py-6">
         <h1 className="text-xl font-semibold md:text-2xl">
-          Vamos lá? Para ver o resultado da <br />
+          Estamos quase lá? Para ver o resultado da <br />
           sua simulação, informe seus dados
         </h1>
       </div>
@@ -249,7 +249,7 @@ export function PersonalDataForm() {
         isOpen={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       />
-    </>
+    </div>
   )
 }
 
