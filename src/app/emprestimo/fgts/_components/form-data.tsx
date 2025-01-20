@@ -40,15 +40,11 @@ export function PersonalDataForm() {
     const maskedBirthdate = maskBirthdate(birthdate);
     const maskedPhoneNumber = maskPhoneNumber(phoneNumber);
   
-    if (document !== maskedDocument) {
-      form.setValue("cpf", maskedDocument);
-    }
-    if (birthdate !== maskedBirthdate) {
-      form.setValue("birthDate", maskedBirthdate);
-    }
-    if (phoneNumber !== maskedPhoneNumber) {
-      form.setValue("phonenumber", maskedPhoneNumber);
-    }
+    if (document !== maskedDocument) form.setValue("cpf", maskedDocument);
+    
+    if (birthdate !== maskedBirthdate) form.setValue("birthDate", maskedBirthdate);
+    
+    if (phoneNumber !== maskedPhoneNumber) form.setValue("phonenumber", maskedPhoneNumber);
   }, [document, birthdate, phoneNumber, form]);  
 
   return (
@@ -58,7 +54,7 @@ export function PersonalDataForm() {
           Passo 2
         </span>
         <h1 className="text-xl font-semibold md:text-2xl">
-          Estamos quase lá? Para ver o resultado da <br />
+          Estamos quase lá. Para ver o resultado da <br />
           sua simulação, informe seus dados
         </h1>
       </div>
