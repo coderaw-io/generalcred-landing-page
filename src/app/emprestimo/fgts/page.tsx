@@ -4,6 +4,7 @@ import { FAQSection } from "@/components/shared/faq-section"
 import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
 import { InformationSection } from "@/components/shared/information-section"
+import { WhatsappButton } from "@/components/shared/whatsapp-button"
 import { LoanProposalsProvider } from "@/contexts/loan-proposals-context"
 import { BenefitsSection } from "../../../components/shared/benefits-section"
 import { FormContent } from "./_components/form-content"
@@ -26,6 +27,7 @@ export default function FgtsPage() {
         <FAQSection />
         <Footer />
       </div>
+      <WhatsappButton />
     </LoanProposalsProvider>
   )
 }
