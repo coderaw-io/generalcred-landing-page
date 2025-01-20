@@ -34,9 +34,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from 'react-hot-toast'
-import { HeroSection } from "./hero-section"
+import { HeroSection } from "../../../../components/shared/hero-section"
+import { WhatsappButton } from "../../../../components/shared/whatsapp-button"
 import { ProposalsDialog } from "./proposals-dialog"
-import { WhatsappButton } from "./whatsapp-button"
 
 export function PersonalDataForm() {
   const { setFormData, setLoanProposals } = useLoanProposals()

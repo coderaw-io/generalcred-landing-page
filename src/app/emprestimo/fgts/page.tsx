@@ -6,6 +6,8 @@ import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
 import { Button } from "@/components/ui/button"
 import { LoanProposalsProvider } from "@/contexts/loan-proposals-context"
+import { PhoneIcon } from "lucide-react"
+import { BenefitsSection } from "../../../components/shared/benefits-section"
 import { PersonalDataForm } from "./_components/form"
 
 export default function FgtsPage() {
@@ -17,6 +19,8 @@ export default function FgtsPage() {
         <main className="w-full pt-12 md:pt-16">
           <PersonalDataForm />
         </main>
+        
+        <BenefitsSection />
 
         <div className="bg-slate-50 w-ful px-4 py-16 rounded-none sm:py-0 sm:pt-16 md:px-8 lg:px-12 2xl:px-24">
           <div className="w-full flex flex-col items-center space-y-12 lg:space-y-0 lg:flex-row lg:justify-between">
@@ -40,8 +44,9 @@ export default function FgtsPage() {
                   type="button"
                   size="lg"
                   variant="outline"
-                  className="bg-slate-950 border-none mt-6 hover:bg-primary-gold"
+                  className="flex items-center gap-2 bg-slate-950 border-none mt-6 hover:bg-primary-gold"
                 >
+                  <PhoneIcon className="size-4" />
                   Dúvidas ou precisa de ajuda? Fale conosco
                 </Button>
               </Link>

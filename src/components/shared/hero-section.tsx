@@ -29,6 +29,7 @@ export function HeroSection() {
         src={heroImg} 
         alt="Passo 5" 
         className="object-cover w-full rounded-[0.3rem] md:w-[90%]" 
+        priority
       />
     </div>
   )

@@ -38,7 +38,7 @@ export function ProposalsCard({
       <CardHeader className="pb-2 pt-6">
         <CardTitle className="sr-only hidden">Propostas</CardTitle>
         <h2 className="text-xl font-bold text-slate-950">
-          PROPOSTA DE {paymentScheduleItems.length} PARCELAS ANUAIS
+          PROPOSTA DE {paymentScheduleItems.length} PARCELAS
         </h2>
       </CardHeader>
       
