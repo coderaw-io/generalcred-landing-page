@@ -24,13 +24,13 @@ export function LoanSimulator() {
       <div className="space-y-4">
         <div>
           <div className="flex items-center gap-2 mt-2">
-            <Button 
-              type="button" 
+            <Button
+              type="button"
               variant="outline"
-               size="icon" 
-               className="size-10 rounded-full"
-               onClick={decrementBalance} 
-               >
+              size="icon"
+              className="size-10 rounded-full"
+              onClick={decrementBalance}
+            >
               <MinusIcon className="size-4" />
             </Button>
 
@@ -57,13 +57,16 @@ export function LoanSimulator() {
         </div>
       </div>
 
-      <Card className="p-4 bg-[#FDF7E7] border-none">
+      <Card className="p-4 bg-slate-50 border-none">
         <div className="flex gap-2">
-          <AlertCircle className="h-5 w-5 text-[#B38C3C] flex-shrink-0" />
+          <AlertCircle className="h-5 w-5 text-primary-gold flex-shrink-0" />
           <div>
-            <p className="font-medium text-[#B38C3C]">Simulação com valores aproximados</p>
-            <p className="text-sm text-[#B38C3C]">
-              Para saber as condições exatas de taxas e valores liberados para você clique no botão "Ver Proposta".
+            <p className="font-medium text-primary-gold">
+              Simulação com valores aproximados
+            </p>
+            <p className="text-sm text-primary-gold">
+              Para saber as condições exatas de taxas e valores liberados para você clique {" "}
+              no botão &quot;Ver Proposta&quot;.
             </p>
           </div>
         </div>
