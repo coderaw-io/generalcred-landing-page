@@ -16,7 +16,7 @@ export function FormInit() {
         </div>
 
         <h1 className="text-xl font-extrabold sm:text-3xl">
-          Qual é o seu saldo?
+          Qual o seu saldo?
         </h1>
 
         <p className="text-lg text-muted-foreground">
