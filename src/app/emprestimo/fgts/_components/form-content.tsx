@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/shared/hero-section'
 import { useState } from 'react'
 import { AuthorizationSection } from './authorization-section'
 import { PersonalDataForm } from './form-data'
+import { FormInit } from './form-init'
 import { Stepper } from './stepper'
 
 export function FormContent() {
@@ -17,6 +18,10 @@ export function FormContent() {
           <form>
             <Stepper
               steps={[
+                {
+                  label: 'Inicio da simulação',
+                  content: <FormInit />
+                },
                 {
                   label: 'Autorização da consulta no app do FGTS',
                   content: <AuthorizationSection />

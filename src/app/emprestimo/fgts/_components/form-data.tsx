@@ -87,7 +87,10 @@ export function PersonalDataForm() {
 
   return (
     <div className="pb-6">
-      <div className="space-y-2 py-6">
+      <div className="space-y-2 pb-8">
+        <span className="text-2xl text-primary-gold font-extrabold">
+          Passo 2
+        </span>
         <h1 className="text-xl font-semibold md:text-2xl">
           Estamos quase lá? Para ver o resultado da <br />
           sua simulação, informe seus dados
