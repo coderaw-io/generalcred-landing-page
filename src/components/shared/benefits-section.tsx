@@ -27,7 +27,7 @@ export function BenefitsSection() {
   ]
 
   return (
-    <section className="bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950 w-full py-16 px-4 xl:pt-16 xl:pb-24 2xl:pb-28">
+    <section className="bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950 w-full py-16 px-4 xl:pt-16 xl:pb-20">
       <div className="mx-auto max-w-8xl space-y-8">
         <div className="flex justify-center items-center">
           <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2">
@@ -62,6 +62,14 @@ export function BenefitsSection() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="max-w-5xl w-full mx-auto py-6 lg:py-12">
+          <small className="text-sm text-muted-foreground text-center">
+            *O CET (Custo Efetivo Total) de um empréstimo com prazo de 84 meses a uma taxa de 
+            juros de 1,29% a.m. e sem cobertura de seguros é de 19% a.a. O valor do CET mudará 
+            conforme as condições de valor, prazo, taxas de juros e seguros contratados.
+          </small>
         </div>
       </div>
     </section>
