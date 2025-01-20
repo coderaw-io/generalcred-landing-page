@@ -5,7 +5,10 @@ import { Button } from "../ui/button"
 
 export function InformationSection() {
   return (
-    <div className="flex flex-col sm:hidden xl:flex xl:flex-col xl:relative w-full text-slate-950 space-y-8 ">
+    <div
+      data-aos="fade-right"
+      className="flex flex-col sm:hidden xl:flex xl:flex-col xl:relative w-full text-slate-950 space-y-8 2xl:pb-12"
+    >
       <h1 className="max-w-2xl w-full text-3xl md:text-5xl font-bold leading-tight uppercase">
         Saiba como liberar <br />
         a contratação da <br />
@@ -15,7 +18,8 @@ export function InformationSection() {
 
       <p className="max-w-xl w-full text-sm text-muted-foreground sm:text-base lg:text-lg">
         Siga estas etapas simples para autorizar a consulta do seu <strong>FGTS</strong> {" "}
-        pelo aplicativo oficial. É necessário autorizar o banco <strong>UY3</strong> para acessar {" "}
+        pelo aplicativo oficial. É necessário autorizar o banco <br />
+        <strong>UY3 Sociedade de Crédito</strong> para acessar {" "}
         as informações relacionadas ao seu <strong>FGTS</strong>.Arraste as imagens para o lado e {" "}
         siga todos os passos com atenção.
       </p>
@@ -32,7 +36,7 @@ export function InformationSection() {
         </Button>
       </Link>
 
-      <div className="max-w-5xl w-full mx-auto py-6 lg:py-12">
+      <div className="max-w-2xl w-full py-6">
         <small className="text-xs text-muted-foreground text-center">
           * Ao optar pelo Saque Aniversário, no caso de rescisão do contrato, terá direito apenas ao
           saque da multa rescisória. Quem migrar para o saque aniversário e decidir voltar para a sistemática

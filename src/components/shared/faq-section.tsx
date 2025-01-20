@@ -11,7 +11,10 @@ import { Badge } from "../ui/badge"
 export function FAQSection() {
   return (
     <div className="bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950 py-12">
-      <section className="max-w-4xl mx-auto px-4 py-8">
+      <section
+        data-aos="fade-down"
+        className="max-w-4xl mx-auto px-4 py-8"
+      >
         <div className="flex justify-center items-center pb-12">
           <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2">
             <HelpCircleIcon className="size-5" />
@@ -122,7 +125,7 @@ export function FAQSection() {
               O que é preciso para aderir à antecipação do Saque-Aniversário?
             </AccordionTrigger>
             <AccordionContent>
-              Você precisa aderir à modalidade de Saque-Aniversário, no aplicativo FGTS e autorizar a 
+              Você precisa aderir à modalidade de Saque-Aniversário, no aplicativo FGTS e autorizar a
               realização da consulta do saldo e bloqueio do seu FGTS pela Generalcred.
             </AccordionContent>
           </AccordionItem>

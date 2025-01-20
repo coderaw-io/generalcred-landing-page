@@ -17,7 +17,7 @@ export default function FgtsPage() {
           <PersonalDataForm />
         </main>
         <BenefitsSection />
-        <div className="bg-slate-50 w-ful px-3 py-16 rounded-none sm:py-0 sm:pt-16 md:px-8 lg:px-12 2xl:px-24">
+        <div className="bg-slate-50 w-ful px-3 py-16 rounded-none sm:py-0 sm:pt-16 md:px-8 lg:px-12 xl:px-24 2xl:px-28">
           <div className="w-full flex flex-col items-center space-y-12 lg:space-y-0 lg:flex-row lg:justify-between">
             <InformationSection />
             <CarouselSection />

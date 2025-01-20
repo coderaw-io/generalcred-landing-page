@@ -1,3 +1,4 @@
+import { AOSInit } from "@/components/shared/aos-init";
 import "./globals.css";
 
 import type { Metadata } from "next";
@@ -25,6 +26,7 @@ export default function RootLayout({
         className={`${montserrat.className} antialiased`}
       >
         {children}
+        <AOSInit />
         <Toaster />
       </body>
     </html>
