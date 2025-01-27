@@ -26,8 +26,8 @@ import { HeroSection } from "@/components/shared/hero-section"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { useLoanProposalsContext } from "@/hooks/use-loan-proposals"
 import { formSchema } from "@/schemas/form-schema"
+import { ClientData } from "@/store/loan-proposals-store"
 import { maskBirthdate } from "@/utils/mask-birthdate"
 import { maskDocument } from "@/utils/mask-document"
 import { maskPhoneNumber } from "@/utils/mask-phone-number"
@@ -37,8 +37,11 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-export function PersonalDataForm() {
-  const { setFormData } = useLoanProposalsContext();
+interface PersonalDataFormProps {
+  setFormData: (data: ClientData) => void;
+}
+
+export function PersonalDataForm({ setFormData }: PersonalDataFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

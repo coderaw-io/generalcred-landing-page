@@ -5,14 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useStepper } from "@/hooks/use-stepper";
 import { TriangleAlertIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function AuthorizationSection() {
-  const { nextStep } = useStepper();
   const [isChecked, setIsChecked] = useState(false);
-
+  const router = useRouter();
+  
   return (
     <div className="w-full grid grid-cols-1 items-center gap-6 pt-20 sm:pt-0 md:grid-cols-2 md:gap-8 md:px-8 2xl:gap-12 2xl:px-0">
       <div className="w-full flex flex-col space-y-6 px-6 sm:px-0 md:max-w-sm md:w-full lg:pb-24 lg:max-w-lg 2xl:max-w-2xl">
@@ -70,7 +70,7 @@ export function AuthorizationSection() {
           type="button"
           size="lg"
           className="w-full hover:bg-primary hover:text-primary-gold mt-6"
-          onClick={() => nextStep()}
+          onClick={() => router.push("/emprestimo/fgts/proposta/simulacao")}
           disabled={!isChecked}
         >
           Conclui esta etapa, quero continuar

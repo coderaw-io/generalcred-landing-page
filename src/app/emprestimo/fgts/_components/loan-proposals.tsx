@@ -1,7 +1,7 @@
 'use client'
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useLoanProposalsContext } from "@/hooks/use-loan-proposals";
+import { useLoanProposalsStore } from "@/store/loan-proposals-store";
 import { InfoIcon } from "lucide-react";
 import { ProposalsCard } from "./proposals-card";
 
@@ -14,7 +14,7 @@ function calculateTotalPayment(paymentScheduleItems: PaymentScheduleItem[]): num
 }
 
 export function LoanProposals() {
-  const { loanProposals } = useLoanProposalsContext()
+  const { loanProposals } = useLoanProposalsStore()
 
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-0 md:px-6 pb-12">
