@@ -1,52 +1,53 @@
-export interface GetFgtsBalanceRequest {
-  name: string,
-  cpf: string,
-  phonenumber: string,
-  email: string
+export interface FgtsBalanceRequest {
+  cpf: string
+  installments: number
+  rate: number
 }
-
-export type FgtsBalance = FgtsBalanceResponse[]
 
 export interface FgtsBalanceResponse {
-  product_id: string
-  table_name: string
-  response: Balance
+  fgtsTables: FgtsTable[]
 }
 
-export interface Balance {
+export interface FgtsTable {
+  product_id: string
+  table_name: string
+  response: FgtsBalance
+}
+
+export interface FgtsBalance {
   id: string
   calculateByValueType: string
-  requestedAmount: string
-  initialValue: string
-  liquidValue: string
-  monthlyInterest: string
-  yearlyInterest: string
+  requestedAmount: number
+  initialValue: number
+  liquidValue: number
+  monthlyInterest: number
+  yearlyInterest: number
   startDate: string
   dueDate: string
-  comm: string
+  comm: number
   efectiveCommissions: EfectiveCommission[]
-  commTc: string
-  commNonTc: string
+  commTc: number
+  commNonTc: number
   agentCommissions: AgentCommission[]
-  finTax: string
-  effectiveMonthlyCost: string
-  effectiveYearlyCost: string
+  finTax: number
+  effectiveMonthlyCost: number
+  effectiveYearlyCost: number
   registrationNumber: string
-  termInMonths: string
-  numberOfPayments: string
-  paymentFixedCosts: string
+  termInMonths: number
+  numberOfPayments: number
+  paymentFixedCosts: number
   paymentScheduleItems: PaymentScheduleItem[]
 }
 
 export interface EfectiveCommission {
   commissionName: string
-  commissionValueInCents: string
+  commissionValueInCents: number
   commissionValueInCentsDisplay: string
 }
 
 export interface AgentCommission {
   name: string
-  amount: string
+  amount: number
   amountDisplay: string
   type: string
   baseValue: string

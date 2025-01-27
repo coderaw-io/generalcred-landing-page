@@ -32,14 +32,14 @@ export function LoanProposals() {
       </div>
 
       <ScrollArea className="h-[420px] md:h-[510px] lg:pr-6">
-        {loanProposals.map((proposal, index) => (
+        {loanProposals?.fgtsTables.map((proposal, index) => (
           <ProposalsCard
             key={proposal.product_id}
             index={index}
             paymentScheduleItems={proposal.response.paymentScheduleItems}
             totalNetAmountReleased={calculateTotalPayment(proposal.response.paymentScheduleItems)}
-            liquidValue={parseFloat(proposal.response.liquidValue)}
-            interestRate={(parseFloat(proposal.response.monthlyInterest) * 100).toFixed(2)}
+            liquidValue={proposal.response.liquidValue}
+            interestRate={proposal.response.monthlyInterest.toString()}
             dueDate={proposal.response.startDate}
           />
         ))}

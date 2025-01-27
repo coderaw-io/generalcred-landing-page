@@ -1,19 +1,21 @@
-import { GetFgtsBalanceRequest } from "@/@types/fgts/loan-proposal";
+import { FgtsBalanceRequest } from "@/@types/fgts/loan";
 import { dataClient } from "@/lib/axios";
 
 export class BalanceService {
-  static async getFgtsBalance({
-    name,
+  static async getFgtsLoanBalance({
     cpf,
-    phonenumber,
-    email
-  }: GetFgtsBalanceRequest) {
+    installments,
+    rate,
+  }: FgtsBalanceRequest) {
     try {
       const { data } = await dataClient.post("/fgts/balance", {
-        name,
         cpf,
-        phonenumber,
-        email
+        installments,
+        rate
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("general:access_token")}`
+        }
       });
 
       return data;
