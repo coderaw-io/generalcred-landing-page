@@ -51,7 +51,7 @@ export function ProposalsCard({
             PROPOSTA DE {paymentScheduleItems.length} PARCELAS
           </h2>
 
-          <Badge className="px-6 bg-slate-950 text-primary-gold font-semibold hover:bg-slate-800">
+          <Badge className="px-6 bg-slate-950 text-primary-gold font-semibold hover:bg-slate-800 hover:bg-primary-gold/40">
             Proposta {index + 1}
           </Badge>
         </div>

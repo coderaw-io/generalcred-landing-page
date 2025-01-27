@@ -33,7 +33,7 @@ export function BenefitsSection() {
     >
       <div className="mx-auto max-w-8xl space-y-8">
         <div className="flex justify-center items-center">
-          <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2">
+          <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2 bg-primary-gold/40">
             <RocketIcon className="size-5" />
             <span>
               Principais vantagens

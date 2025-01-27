@@ -26,6 +26,7 @@ import { HeroSection } from "@/components/shared/hero-section"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { useLoanProposalsContext } from "@/hooks/use-loan-proposals"
 import { formSchema } from "@/schemas/form-schema"
 import { maskBirthdate } from "@/utils/mask-birthdate"
 import { maskDocument } from "@/utils/mask-document"
@@ -37,6 +38,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 export function PersonalDataForm() {
+  const { setFormData } = useLoanProposalsContext();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,6 +71,14 @@ export function PersonalDataForm() {
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
+      setFormData({
+        name: data.name,
+        cpf: data.cpf,
+        birthdate: data.birthDate,
+        phonenumber: data.phonenumber,
+        email: data.email,
+      });
+
       const getAccessToken: string = await axios.post("/api/fgts/token");
       Promise.resolve(getAccessToken);
 
@@ -98,6 +108,13 @@ export function PersonalDataForm() {
                   Vamos começar? Para ver o resultado da <br />
                   sua simulação, informe seus dados
                 </h1>
+
+                <p className="text-sm text-muted-foreground">
+                  <strong>Atenção</strong>, para realizar a simulação dos valores disponíveis {" "}
+                  do seu FGTS, primeiro você deve autorizar o banco {" "}
+                  <strong>UY3 Sociedade de Crédito</strong> {" "}
+                  na sua conta do aplicativo oficial do FGTS.
+                </p>
               </div>
 
               <div className="space-y-4">

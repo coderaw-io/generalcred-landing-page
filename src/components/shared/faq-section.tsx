@@ -16,7 +16,7 @@ export function FAQSection() {
         className="max-w-4xl mx-auto px-4 py-8"
       >
         <div className="flex justify-center items-center pb-12">
-          <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2">
+          <Badge className="py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2 hover:bg-primary-gold/40">
             <HelpCircleIcon className="size-5" />
             <span>
               Informações importantes
