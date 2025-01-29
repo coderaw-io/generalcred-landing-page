@@ -5,8 +5,17 @@ export function useLoanProposals() {
     formData,
     setFormData,
     loanProposals,
-    setLoanProposals
+    setLoanProposals,
+    simulationData,
+    setSimulationData
   } = useLoanProposalsStore();
 
-  return { formData, setFormData, loanProposals, setLoanProposals };
+  return {
+    formData,
+    setFormData,
+    loanProposals,
+    setLoanProposals,
+    simulationData,
+    setSimulationData
+  };
 }

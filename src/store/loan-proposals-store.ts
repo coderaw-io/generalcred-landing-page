@@ -1,3 +1,4 @@
+import { SimulationResponse } from "@/@types/fgts/customer"
 import type { FgtsTable } from "@/@types/fgts/loan"
 import { create } from "zustand"
 
@@ -14,6 +15,8 @@ interface LoanProposalsStore {
   setFormData: (data: ClientData) => void
   loanProposals: FgtsTable[] | null
   setLoanProposals: (proposals: FgtsTable[]) => void
+  simulationData: SimulationResponse | null
+  setSimulationData: (data: SimulationResponse) => void
 }
 
 export const useLoanProposalsStore = create<LoanProposalsStore>((set) => ({
@@ -21,4 +24,6 @@ export const useLoanProposalsStore = create<LoanProposalsStore>((set) => ({
   setFormData: (data) => set({ formData: data }),
   loanProposals: null,
   setLoanProposals: (proposals) => set({ loanProposals: proposals }),
+  simulationData: null,
+  setSimulationData: (data) => set({ simulationData: data })
 }))

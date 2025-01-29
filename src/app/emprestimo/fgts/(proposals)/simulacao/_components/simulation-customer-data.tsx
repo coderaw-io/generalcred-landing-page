@@ -60,7 +60,7 @@ export function SimulationCustomerData() {
       </div>
 
       <div className="space-y-8">
-        <div className="grid grid-cols-2 items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
             <Label htmlFor="rg">
               RG
@@ -93,9 +93,9 @@ export function SimulationCustomerData() {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Genêro</SelectLabel>
-                      <SelectItem value="apple">Masculino</SelectItem>
-                      <SelectItem value="banana">Feminino</SelectItem>
-                      <SelectItem value="blueberry">Outro</SelectItem>
+                      <SelectItem value="Masculino">Masculino</SelectItem>
+                      <SelectItem value="Feminino">Feminino</SelectItem>
+                      <SelectItem value="Outro">Outro</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -110,7 +110,7 @@ export function SimulationCustomerData() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
             <Label htmlFor="mother_name">
               Nome da mãe

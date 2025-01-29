@@ -85,7 +85,7 @@ export function SimulationCustomerAddressData() {
       </div>
 
       <div className="space-y-8">
-        <div className="grid grid-cols-2 items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
             <Label htmlFor="zip_code">
               CEP
@@ -120,7 +120,7 @@ export function SimulationCustomerAddressData() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
             <Label htmlFor="number">
               Número
@@ -156,7 +156,7 @@ export function SimulationCustomerAddressData() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-4">
           <div className="flex flex-col space-y-3">
             <Label htmlFor="city">
               Cidade

@@ -15,7 +15,7 @@ const addressAttributesSchema = z.object({
 const bankAccountAttributesSchema = z.object({
   kind_pix: z.string().min(1, "O campo tipo de chave PIX é obrigatório."),
   pix: z.string().min(1, "O campo chave PIX é obrigatório."),
-  kind_account: z.string(),
+  kind_account: z.string().optional(),
 });
 
 const entityAttributesSchema = z.object({

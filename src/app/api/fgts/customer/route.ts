@@ -1,13 +1,12 @@
-import { SimulationResponse } from "@/@types/fgts/customer";
 import { dataClient } from "@/lib/axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { nameTableChosen, proposalFgts } = await request.json();
+  const { customer, customer_service_id } = await request.json();
 
   const formData = {
-    nameTableChosen,
-    proposalFgts,
+    customer,
+    customer_service_id,
   };
 
   const accessToken = request.cookies.get("general:access_token")?.value;
@@ -19,7 +18,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const response = await dataClient.post<SimulationResponse>("/fgts/proposal",
+  const response = await dataClient.post("/fgts/customer",
     formData,
     {
       headers: {
