@@ -1,17 +1,57 @@
 "use client"
 
+import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
+import { customerSchema, CustomerSchema } from "@/schemas/simulation-form-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { SimulationCustomerAddressData } from "./simulation-customer-address-data";
+import { SimulationCustomerBankAccountData } from "./simulation-customer-bank-account-data";
 import { SimulationCustomerData } from "./simulation-customer-data";
 import { SimulationStepper } from "./simulation-stepper";
 
 export function SimulationContent() {
+  const { formData: personalData } = useLoanProposals();
+
   const [currentStep, setCurrentStep] = useState(0);
 
-  const form = useForm();
+  const form = useForm<CustomerSchema>({
+    resolver: zodResolver(customerSchema),
+  });
 
   const submit = form.handleSubmit(async data => {
-    console.log(data);
+    const formData = {
+      customer: {
+        birth_date: personalData?.birthdate,
+        email: personalData?.email,
+        mobile: personalData?.phonenumber,
+        rg: data.rg,
+        gender_customer: data.gender_customer,
+        marital_status: "married",
+        mother_name: data.mother_name,
+        father_name: data.father_name ? data.father_name : "",
+        entity_attributes: {
+          name: personalData?.name,
+          cpf_cnpj: personalData?.cpf,
+          address_attributes: {
+            zip_code: data.entity_attributes.address_attributes.zip_code,
+            street: data.entity_attributes.address_attributes.street,
+            number: data.entity_attributes.address_attributes.number,
+            district: data.entity_attributes.address_attributes.district,
+            city: data.entity_attributes.address_attributes.city,
+            state: data.entity_attributes.address_attributes.state,
+            complement: data.entity_attributes.address_attributes.complement
+          },
+          bank_account_attributes: {
+            kind_pix: data.entity_attributes.bank_account_attributes.kind_pix,
+            pix: data.entity_attributes.bank_account_attributes.pix,
+            kind_account: "pix"
+          }
+        }
+      }
+    }
+
+    console.log(formData);
   });
 
   return (
@@ -26,6 +66,14 @@ export function SimulationContent() {
               label: "Dados do cliente",
               content: <SimulationCustomerData />
             },
+            {
+              label: "Dados do endereço do cliente",
+              content: <SimulationCustomerAddressData />
+            },
+            {
+              label: "Dados da conta do cliente",
+              content: <SimulationCustomerBankAccountData />
+            }
           ]}
           currentStep={currentStep}
           onStepChange={setCurrentStep}
