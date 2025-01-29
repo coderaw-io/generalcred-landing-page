@@ -1,21 +1,51 @@
+"use client"
+
 import fgtsImg from "@/assets/images/fgts.png";
+import axios from "axios";
 import Image from "next/image";
 
+import { ContractResponse } from "@/@types/fgts/contract";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckIcon } from "lucide-react";
+import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 export default function FgtsGenerateContractPage() {
+  const getContractData = useCallback(async () => {
+    const id = localStorage.getItem("contract_id");
+    if (!id) return;
+
+    const response = await axios.get<ContractResponse>(`/api/fgts/contract/${id}`)
+    return response.data;
+  }, []);
+
+  const [contractData, setContractData] = useState<ContractResponse | null>(null)
+
+  useEffect(() => {
+    getContractData().then((data) => {
+      if (data) setContractData(data);
+    })
+  }, [getContractData]);
+
+  const router = useRouter();
+  const handleRedirect = () => {
+    localStorage.clear();
+    router.push("/");
+  }
+
   return (
-    <div className="container mx-auto px-4 py-12 md:py-16">
+    <div className="w-full px-4 py-28 md:py-20 xl:py-40 md:container md:mx-auto">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-        <div className="relative">
+        <div className="relative flex">
           <div className="absolute top-0 left-0 w-full h-full bg-primary-gold rounded-3xl" />
-          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-emerald-300 rounded-full opacity-80" />
+          <div className="absolute bottom-0 right-0 size-1/2 bg-emerald-300 rounded-full opacity-80" />
 
           <Image
             src={fgtsImg}
             alt="Fgts image"
-            className="relative z-10 w-full max-w-md mx-auto"
+            className="relative z-10 w-full max-w-xs mx-auto md:max-w-md"
             width={704}
             height={528}
             priority
@@ -23,30 +53,57 @@ export default function FgtsGenerateContractPage() {
         </div>
 
         <div className="space-y-8">
-          <div className="space-y-6">
-            <p className="text-primary-gold font-medium">
-              Empréstimo assinado com sucesso
-            </p>
+          <div className="max-w-xs space-y-6 sm:max-w-sm md:max-w-full">
+            <Badge className="w-72 py-1 px-6 bg-primary-gold text-slate-950 font-semibold flex items-center gap-2 hover:bg-primary-gold/40">
+              <CheckCircle2Icon className="size-5" />
+              <span>
+                Proposta solicitada com sucesso
+              </span>
+            </Badge>
 
-            <h1 className="text-4xl font-medium text-slate-950">
+            <h1 className="text-4xl font-semibold text-slate-950">
               Como devo prosseguir agora?
             </h1>
 
-            <p className="text-muted-foreground">
-              Você receberá em instantes um SMS com o link para dar andamento no recebimento da sua proposta.
+            <p className="font-medium text-muted-foreground">
+              Você receberá em instantes um {" "}
+              <strong>link via SMS</strong> {" "}
+              para dar andamento no recebimento da sua proposta.
             </p>
+
+            <span className="font-medium text-muted-foreground">
+              Caso não tenha recebido nenhuma {" "}
+              <strong>mensagem por SMS</strong>,
+              acesse o link abaixo pelo seu <strong>aparelho celular</strong> para prosseguir.
+            </span>
+
+            {contractData ? (
+              <Link
+                href={contractData.onboarding_link}
+                target="_blank"
+                className="w-80 inline-block px-4 py-2 bg-border text-slate-950 text-sm font-semibold truncate rounded-md hover:bg-slate-950 hover:text-primary-gold transition-colors md:w-full md:px-6 md:py-3 md:text-base"
+              >
+                {contractData.onboarding_link}
+              </Link>
+            ) : (
+              <>
+                Carregando link
+                <LoaderCircleIcon className="size-4 animate-spin" />
+              </>
+            )}
           </div>
 
           <div className="space-y-6">
             {[
-              "Ser maior de 18 anos e ter optado pelo Saque-Aniversário;",
-              "Ter trabalhado de carteira assinada ou possuir saldo FGTS em uma conta;",
-              "Possuir uma conta corrente ou poupança;",
-              "Já ter Autorizado o Banco Bmg a a ter acesso aos valores e dados do seu FGTS;",
+              "Acesse o link de formalização pelo seu smartphone;",
+              "Assine digitalmente o seu contrato de empréstimo FGTS;",
+              "Faça a verificação via selfie pelo sistema anti-fraude",
+              "Aguarde a aprovação da sua solicitação no sistema anti-fraude;",
+              "Receba o dinheiro na sua conta vinculada a chave PIX informada pelo nosso site."
             ].map((requirement, index) => (
               <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
-                  <CheckIcon className="size-4 text-primary-gold" />
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-gold flex items-center justify-center">
+                  <CheckIcon className="size-4 text-slate-950" />
                 </div>
                 <span className="text-muted-foreground">{requirement}</span>
               </div>
@@ -56,8 +113,9 @@ export default function FgtsGenerateContractPage() {
           <Button
             type="button"
             size="lg"
+            onClick={handleRedirect}
           >
-            Simulação finalizada
+            Finalizar cadastro da sua proposta
           </Button>
         </div>
       </div>

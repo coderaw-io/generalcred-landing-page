@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
   if (!response) {
     return NextResponse.json(
-      { error: "Error generating token, please try again." },
+      { error: "Error generating balance, please try again." },
       { status: 500 }
     );
   }

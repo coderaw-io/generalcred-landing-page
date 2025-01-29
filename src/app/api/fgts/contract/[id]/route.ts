@@ -1,14 +1,12 @@
+import { ContractResponse } from "@/@types/fgts/contract";
 import { dataClient } from "@/lib/axios";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
-  const { customer, customer_service_id } = await request.json();
-
-  const formData = {
-    customer,
-    customer_service_id,
-  };
-
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
   const accessToken = request.cookies.get("general:access_token")?.value;
 
   if (!accessToken) {
@@ -18,8 +16,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const response = await dataClient.post("/fgts/customer",
-    formData,
+  const response = await dataClient.get<ContractResponse>(`/fgts/contract?id=${id}`,
     {
       headers: {
         Token: `Bearer ${accessToken}`,
@@ -28,7 +25,7 @@ export async function POST(request: NextRequest) {
 
   if (!response) {
     return NextResponse.json(
-      { error: "Error generating customer, please try again." },
+      { error: "Error get contract data, please try again." },
       { status: 500 }
     );
   }
