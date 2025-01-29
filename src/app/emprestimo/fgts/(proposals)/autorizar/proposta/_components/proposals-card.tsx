@@ -62,7 +62,7 @@ export function ProposalsCard({
   const handleSelectProposal = () => onSelect(nameTableChosen);
 
   return (
-    <Card className="relative overflow-hidden border-0 bg-slate-100 my-4">
+    <Card className="relative overflow-hidden border-0 bg-background my-4">
       <div className="absolute left-0 top-0 h-full w-2 bg-primary-gold" />
 
       <CardHeader className="pb-2 pt-6">

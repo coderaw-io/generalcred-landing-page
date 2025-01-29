@@ -1,5 +1,7 @@
 "use client"
 
+import toast from "react-hot-toast";
+
 import { CarouselSection } from "@/components/shared/carousel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,10 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
 import { useStepper } from "@/hooks/use-stepper";
-import axios from "axios";
 import { LoaderCircleIcon, TriangleAlertIcon } from "lucide-react";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 export function AuthorizationSection() {
   const { nextStep } = useStepper();
@@ -31,17 +31,7 @@ export function AuthorizationSection() {
         phonenumber: data.phonenumber,
         email: data.email,
       });
-
-      const getAccessToken: string = await axios.post("/api/fgts/token");
-      Promise.resolve(getAccessToken);
-
-      const requestData = {
-        cpf: data.cpf,
-        installments: 3,
-        rate: 0.0179999999
-      };
-
-      await axios.post("/api/fgts/balance", requestData);
+      
       nextStep();
     } catch {
       toast.error("OCORREU UM ERRO AO BUSCAR PROPOSTAS!  Verifique a autorização do banco no seu app.");

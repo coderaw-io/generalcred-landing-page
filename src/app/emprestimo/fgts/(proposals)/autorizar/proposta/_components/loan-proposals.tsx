@@ -59,7 +59,9 @@ export function LoanProposals() {
           }
         }
 
-        await axios.post("/api/fgts/proposal", formData);
+        const { data } = await axios.post("/api/fgts/proposal", formData);
+        localStorage.setItem("table_name", selectedTableName ? selectedTableName : "");
+        localStorage.setItem("simulation_id", data.simulation.id ? data.simulation.id : "")
         router.push("/emprestimo/fgts/simulacao");
       }
     } catch {

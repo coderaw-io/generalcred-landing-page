@@ -17,7 +17,10 @@ import { SimulationStepper } from "./simulation-stepper";
 export function SimulationContent() {
   const router = useRouter();
 
-  const { formData: personalData, simulationData } = useLoanProposals();
+  const { 
+    formData: personalData, 
+    simulationData,
+  } = useLoanProposals();
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -59,9 +62,28 @@ export function SimulationContent() {
         customer_service_id: simulationData?.simulation.id
       }
 
-      await axios.post("/api/fgts/customer", formData);
+      const registerCustomer = await axios.post("/api/fgts/customer", formData);
+      Promise.resolve(registerCustomer); 
+
+      const tableName = localStorage.getItem("table_name");
+      const simulationId = localStorage.getItem("simulation_id");
+
+      const contractData = {
+        cpf: personalData?.cpf,
+        nameTableChosen: tableName,
+        contractProposalRequest: {
+          contract: {
+            kind_integrator: 0,
+            installments: 9,
+            customer_id: registerCustomer ? registerCustomer.data.customer.id : null
+          },
+          simulation_id: simulationId
+        }
+      }
+
+      await axios.post("/api/fgts/contract", contractData);
       toast.success("Dados do cadastro enviados com sucesso!");
-      router.push("/emprestimo/fgts/gerar/contrato")
+      router.push("/emprestimo/fgts/gerar/contrato");
     } catch {
       toast.error("ERRO AO CADASTRAR SEUS DADOS, TENTE NOVAMENTE.")
     }
