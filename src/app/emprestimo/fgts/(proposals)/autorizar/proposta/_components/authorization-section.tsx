@@ -5,14 +5,51 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { TriangleAlertIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
+import { useStepper } from "@/hooks/use-stepper";
+import axios from "axios";
+import { LoaderCircleIcon, TriangleAlertIcon } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function AuthorizationSection() {
+  const { nextStep } = useStepper();
+  const { formData: data, setFormData } = useLoanProposals();
+
   const [isChecked, setIsChecked] = useState(false);
-  const router = useRouter();
-  
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function getAllLoanProposals() {
+    try {
+      setIsLoading(true);
+      if (!data) return;
+
+      setFormData({
+        name: data.name,
+        cpf: data.cpf,
+        birthdate: data.birthdate,
+        phonenumber: data.phonenumber,
+        email: data.email,
+      });
+
+      const getAccessToken: string = await axios.post("/api/fgts/token");
+      Promise.resolve(getAccessToken);
+
+      const requestData = {
+        cpf: data.cpf,
+        installments: 3,
+        rate: 0.0179999999
+      };
+
+      await axios.post("/api/fgts/balance", requestData);
+      nextStep();
+    } catch {
+      toast.error("OCORREU UM ERRO AO BUSCAR PROPOSTAS!  Verifique a autorização do banco no seu app.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="w-full grid grid-cols-1 items-center gap-6 pt-20 sm:pt-0 md:grid-cols-2 md:gap-8 md:px-8 2xl:gap-12 2xl:px-0">
       <div className="w-full flex flex-col space-y-6 px-6 sm:px-0 md:max-w-sm md:w-full lg:pb-24 lg:max-w-lg 2xl:max-w-2xl">
@@ -70,10 +107,12 @@ export function AuthorizationSection() {
           type="button"
           size="lg"
           className="w-full hover:bg-primary hover:text-primary-gold mt-6"
-          onClick={() => router.push("/emprestimo/fgts/proposta/simulacao")}
           disabled={!isChecked}
+          onClick={() => getAllLoanProposals()}
         >
-          Conclui esta etapa, quero continuar
+          {isLoading ?
+            <LoaderCircleIcon className="size-5 animate-spin" /> :
+            "Conclui esta etapa, quero continuar"}
         </Button>
 
         <div className="flex flex-col items-center pt-6">

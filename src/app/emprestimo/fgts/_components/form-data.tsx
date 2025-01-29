@@ -22,6 +22,7 @@ import {
   UserIcon
 } from 'lucide-react'
 
+import { FgtsTable } from "@/@types/fgts/loan"
 import { HeroSection } from "@/components/shared/hero-section"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -39,9 +40,13 @@ import { z } from "zod"
 
 interface PersonalDataFormProps {
   setFormData: (data: ClientData) => void;
+  setLoanProposals: (proposals: FgtsTable[]) => void
 }
 
-export function PersonalDataForm({ setFormData }: PersonalDataFormProps) {
+export function PersonalDataForm({
+   setFormData,
+   setLoanProposals
+  }: PersonalDataFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -91,7 +96,10 @@ export function PersonalDataForm({ setFormData }: PersonalDataFormProps) {
         rate: 0.0179999999
       };
 
-      await axios.post("/api/fgts/balance", requestData);
+      const response = await axios.post("/api/fgts/balance", requestData);
+      const { fgtsTables } = response.data;
+      setLoanProposals(fgtsTables);
+
       toast.success("Pré cadastro realizado com sucesso.");
       router.push("/emprestimo/fgts/autorizar/proposta")
     } catch {
