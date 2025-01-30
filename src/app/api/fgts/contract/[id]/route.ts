@@ -19,7 +19,7 @@ export async function GET(
   const response = await dataClient.get<ContractResponse>(`/fgts/contract?id=${id}`,
     {
       headers: {
-        Token: `Bearer ${accessToken}`,
+        Token: `${accessToken}`,
       },
     });
 

@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     formData,
     {
       headers: {
-        Token: `Bearer ${accessToken}`,
+        Token: `${accessToken}`,
       },
     });
 

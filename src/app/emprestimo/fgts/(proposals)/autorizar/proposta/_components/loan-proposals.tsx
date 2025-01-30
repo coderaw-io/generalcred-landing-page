@@ -64,7 +64,8 @@ export function LoanProposals() {
         localStorage.setItem("simulation_id", data.simulation.id ? data.simulation.id : "")
         router.push("/emprestimo/fgts/simulacao");
       }
-    } catch {
+    } catch (error) {
+      console.log(error)
       toast.error("ERRO AO VALIDAR CONTRATO! TENTE NOVAMENTE.")
     } finally {
       setIsLoading(false);
