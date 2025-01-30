@@ -22,6 +22,7 @@ export default function FgtsGenerateContractPage() {
         Token: `${localStorage.getItem("token")}`
       }
     })
+    
     return response.data;
   }, []);
 
