@@ -67,6 +67,7 @@ export function SimulationContent() {
           Token: `${localStorage.getItem("token")}`
         }
       });
+
       Promise.resolve(registerCustomer);
 
       const contractData = {
@@ -87,6 +88,7 @@ export function SimulationContent() {
           Token: `${localStorage.getItem("token")}`
         }
       });
+      
       toast.success("Dados do cadastro enviados com sucesso!");
       localStorage.setItem("contract_id", createContract.data.id);
       router.push("/emprestimo/fgts/gerar/contrato");
