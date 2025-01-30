@@ -17,7 +17,7 @@ export default function FgtsGenerateContractPage() {
     const id = localStorage.getItem("contract_id");
     if (!id) return;
 
-    const response = await dataClient.get<ContractResponse>(`/api/fgts/contract/${id}`, {
+    const response = await dataClient.get<ContractResponse>(`/contract/${id}`, {
       headers: {
         Token: `${localStorage.getItem("token")}`
       }
