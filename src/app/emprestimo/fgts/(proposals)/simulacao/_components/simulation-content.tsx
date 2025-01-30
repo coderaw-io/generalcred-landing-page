@@ -82,7 +82,7 @@ export function SimulationContent() {
         }
       }
 
-      const createContract = await dataClient.post("/contract", contractData, {
+      const createContract = await dataClient.post("/fgts/contract", contractData, {
         headers: {
           Token: `${localStorage.getItem("token")}`
         }
