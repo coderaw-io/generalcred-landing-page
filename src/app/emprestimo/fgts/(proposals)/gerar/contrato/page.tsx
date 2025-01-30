@@ -1,12 +1,12 @@
 "use client"
 
 import fgtsImg from "@/assets/images/fgts.png";
-import axios from "axios";
 import Image from "next/image";
 
 import { ContractResponse } from "@/@types/fgts/contract";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { dataClient } from "@/lib/axios";
 import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,11 @@ export default function FgtsGenerateContractPage() {
     const id = localStorage.getItem("contract_id");
     if (!id) return;
 
-    const response = await axios.get<ContractResponse>(`/api/fgts/contract/${id}`)
+    const response = await dataClient.get<ContractResponse>(`/api/fgts/contract/${id}`, {
+      headers: {
+        Token: `${localStorage.getItem("token")}`
+      }
+    })
     return response.data;
   }, []);
 

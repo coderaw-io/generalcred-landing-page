@@ -1,11 +1,11 @@
 "use client"
 
-import axios from "axios"
 import toast from "react-hot-toast"
 
 import { FgtsBalance } from "@/@types/fgts/loan"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { dataClient } from "@/lib/axios"
 import { useLoanProposalsStore } from "@/store/loan-proposals-store"
 import { InfoIcon, LoaderCircleIcon, PencilLineIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -59,7 +59,12 @@ export function LoanProposals() {
           }
         }
 
-        const { data } = await axios.post("/api/fgts/proposal", formData);
+        const { data } = await dataClient.post("/fgts/proposal", formData, {
+          headers: {
+            Token: `${localStorage.getItem("token")}`
+          }
+        });
+
         localStorage.setItem("table_name", selectedTableName ? selectedTableName : "");
         localStorage.setItem("simulation_id", data.simulation.id ? data.simulation.id : "")
         router.push("/emprestimo/fgts/simulacao");

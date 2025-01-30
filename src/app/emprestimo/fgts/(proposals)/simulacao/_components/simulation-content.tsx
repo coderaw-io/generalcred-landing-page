@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
+import { dataClient } from "@/lib/axios";
 import { customerSchema, CustomerSchema } from "@/schemas/simulation-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -63,7 +64,7 @@ export function SimulationContent() {
       }
 
       const registerCustomer = await axios.post("/api/fgts/customer", formData);
-      Promise.resolve(registerCustomer); 
+      Promise.resolve(registerCustomer);
 
       const contractData = {
         cpf: personalData?.cpf,
@@ -78,7 +79,11 @@ export function SimulationContent() {
         }
       }
 
-      const createContract = await axios.post("/api/fgts/contract/create", contractData);
+      const createContract = await dataClient.post("/api/fgts/contract/create", contractData, {
+        headers: {
+          Token: `${localStorage.getItem("token")}`
+        }
+      });
       toast.success("Dados do cadastro enviados com sucesso!");
       localStorage.setItem("contract_id", createContract.data.id);
       router.push("/emprestimo/fgts/gerar/contrato");

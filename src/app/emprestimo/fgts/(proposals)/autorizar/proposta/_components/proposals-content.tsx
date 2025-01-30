@@ -11,13 +11,9 @@ export function ProposalsContent() {
 
   const form = useForm();
 
-  const submit = form.handleSubmit(async data => {
-    console.log(data);
-  });
-
   return (
     <FormProvider {...form}>
-      <form onSubmit={submit}>
+      <form>
         <Stepper
           steps={[
             { 

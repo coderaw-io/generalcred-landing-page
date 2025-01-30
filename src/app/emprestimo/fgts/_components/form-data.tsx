@@ -1,6 +1,5 @@
 'use client'
 
-import axios from "axios"
 import Link from "next/link"
 import toast from "react-hot-toast"
 
@@ -27,6 +26,7 @@ import { HeroSection } from "@/components/shared/hero-section"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { dataClient } from "@/lib/axios"
 import { formSchema } from "@/schemas/form-schema"
 import { ClientData } from "@/store/loan-proposals-store"
 import { maskBirthdate } from "@/utils/mask-birthdate"
@@ -44,9 +44,9 @@ interface PersonalDataFormProps {
 }
 
 export function PersonalDataForm({
-   setFormData,
-   setLoanProposals
-  }: PersonalDataFormProps) {
+  setFormData,
+  setLoanProposals
+}: PersonalDataFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -87,8 +87,9 @@ export function PersonalDataForm({
         email: data.email,
       });
 
-      const getAccessToken: string = await axios.post("/api/fgts/token");
+      const getAccessToken = await dataClient.post("/fgts/token");
       Promise.resolve(getAccessToken);
+      localStorage.setItem("token", getAccessToken.data.token);
 
       const requestData = {
         cpf: data.cpf,
@@ -96,7 +97,11 @@ export function PersonalDataForm({
         rate: 0.0179999999
       };
 
-      const response = await axios.post("/api/fgts/balance", requestData);
+      const response = await dataClient.post("/fgts/balance", requestData, {
+        headers: {
+          Token: `${localStorage.getItem("token")}`
+        }
+      });
       const { fgtsTables } = response.data;
       setLoanProposals(fgtsTables);
 
