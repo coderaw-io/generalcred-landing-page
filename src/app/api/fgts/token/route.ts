@@ -3,7 +3,7 @@ import { dataClient } from "@/lib/axios";
 import { NextResponse } from "next/server";
 
 export async function POST() {
-  const { data } = await dataClient.post("/fgts/token");
+  const { data } = await dataClient.post("fgts/token");
 
   if (!data) {
     return NextResponse.json(
