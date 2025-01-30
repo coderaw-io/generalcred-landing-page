@@ -1,6 +1,5 @@
 "use client"
 
-import axios from "axios";
 import toast from "react-hot-toast";
 
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
@@ -63,7 +62,11 @@ export function SimulationContent() {
         customer_service_id: simulationId
       }
 
-      const registerCustomer = await axios.post("/api/fgts/customer", formData);
+      const registerCustomer = await dataClient.post("/fgts/customer", formData, {
+        headers: {
+          Token: `${localStorage.getItem("token")}`
+        }
+      });
       Promise.resolve(registerCustomer);
 
       const contractData = {
