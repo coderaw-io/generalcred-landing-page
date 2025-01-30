@@ -2,13 +2,13 @@
 
 import fgtsImg from "@/assets/images/fgts.png";
 import Image from "next/image";
+import Link from "next/link";
 
 import { ContractResponse } from "@/@types/fgts/contract";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { dataClient } from "@/lib/axios";
 import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
