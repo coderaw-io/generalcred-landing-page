@@ -24,12 +24,14 @@ export default function FgtsPage() {
         <div className="bg-slate-50 w-ful px-3 py-16 rounded-none sm:py-0 sm:pt-16 md:px-8 lg:px-12 xl:px-24 xl:py-24 2xl:px-28">
           <div className="w-full flex flex-col items-center space-y-12 lg:space-y-0 lg:flex-row lg:justify-between">
             <InformationSection />
-            <CarouselSection />
+            <div className="w-full 2xl:max-w-3xl">
+              <CarouselSection />
+            </div>
           </div>
         </div>
         <FAQSection />
         <Footer />
-      </div>   
+      </div>
       <WhatsappButton />
     </>
   )
