@@ -1,7 +1,6 @@
 "use client"
 
 import fgtsImg from "@/assets/images/fgts.png";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,6 +8,7 @@ import { ContractResponse } from "@/@types/fgts/contract";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
+import { dataClient } from "@/lib/axios";
 import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -16,15 +16,25 @@ import { useCallback, useEffect, useState } from "react";
 export default function FgtsGenerateContractPage() {
   const { contractId: id } = useLoanProposals();
 
-  const getContractData = useCallback(async () => {
-    const response = await axios.get<ContractResponse>(`/api/fgts/contract/${id}`);
+  const getContractData = useCallback(async (accessToken: string) => {
+    const response = await dataClient.get<ContractResponse>(`/fgts/contract?id=${id}`,
+      {
+        headers: {
+          Token: `${accessToken}`,
+        },
+      }
+    );
+
     return response.data;
   }, [id]);
 
-  const [contractData, setContractData] = useState<ContractResponse | null>(null)
+  const [contractData, setContractData] = useState<ContractResponse | null>(null);
 
   useEffect(() => {
-    getContractData().then((data) => {
+    const accessToken = localStorage.getItem("token");
+    if (!accessToken) return;
+
+    getContractData(accessToken).then((data) => {
       if (data) {
         setContractData(data);
         setTimeout(() => {
