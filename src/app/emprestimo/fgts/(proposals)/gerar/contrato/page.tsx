@@ -76,15 +76,15 @@ export default function FgtsGenerateContractPage() {
             </h1>
 
             <p className="font-medium text-muted-foreground">
-              Você receberá em instantes um {" "}
-              <strong>link via SMS</strong> {" "}
+              Você deverá assinar o seu {" "}
+              <strong>contrato digitalmente</strong> {" "}
               para dar andamento no recebimento da sua proposta.
             </p>
 
             <span className="font-medium text-muted-foreground">
-              Caso não tenha recebido nenhuma {" "}
-              <strong>mensagem por SMS</strong>,
-              acesse o link abaixo pelo seu <strong>aparelho celular</strong> para prosseguir.
+              Para realizar esta ação {" "}
+              <strong>clique no link</strong>,
+              abaixo pelo seu <strong>aparelho celular</strong> para assinar o contrato.
             </span>
 
             {contractData ? (
@@ -125,7 +125,7 @@ export default function FgtsGenerateContractPage() {
             size="lg"
             onClick={handleRedirect}
           >
-            Finalizar cadastro da sua proposta
+            Clique aqui para assinar contrato
           </Button>
         </div>
       </div>
