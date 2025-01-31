@@ -35,12 +35,7 @@ export default function FgtsGenerateContractPage() {
     if (!accessToken) return;
 
     getContractData(accessToken).then((data) => {
-      if (data) {
-        setContractData(data);
-        setTimeout(() => {
-          window.location.href = `${contractData?.onboarding_link}`
-        }, 3000)
-      }
+      if (data) setContractData(data);
     })
   }, [getContractData, contractData?.onboarding_link]);
 

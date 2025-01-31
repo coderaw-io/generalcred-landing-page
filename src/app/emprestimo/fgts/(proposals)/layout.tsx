@@ -12,10 +12,12 @@ export default function FgtsLoanProposalsLayout({
   children: React.ReactNode;
 }>) {
   const { formData, loanProposals } = useLoanProposals();
+  
   const router = useRouter();
 
   useLayoutEffect(() => {
     if (!formData || !loanProposals) {
+      localStorage.clear();
       router.push("/");
     }
   }, [formData, loanProposals, router])
