@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { SimulationCustomerAddressData } from "./simulation-customer-address-data";
-import { SimulationCustomerBankAccountData } from "./simulation-customer-bank-account-data";
 import { SimulationCustomerData } from "./simulation-customer-data";
 import { SimulationStepper } from "./simulation-stepper";
 
@@ -114,10 +113,6 @@ export function SimulationContent() {
               label: "Dados do endereço do cliente",
               content: <SimulationCustomerAddressData />
             },
-            {
-              label: "Dados da conta do cliente",
-              content: <SimulationCustomerBankAccountData />
-            }
           ]}
           currentStep={currentStep}
           onStepChange={setCurrentStep}

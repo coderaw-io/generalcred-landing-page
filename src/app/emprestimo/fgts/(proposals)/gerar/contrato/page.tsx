@@ -81,11 +81,12 @@ export default function FgtsGenerateContractPage() {
               para dar andamento no recebimento da sua proposta.
             </p>
 
-            <span className="font-medium text-muted-foreground">
+            <p className="font-medium text-muted-foreground">
               Para realizar esta ação {" "}
-              <strong>clique no link</strong>,
-              abaixo pelo seu <strong>aparelho celular</strong> para assinar o contrato.
-            </span>
+              <strong>clique no link</strong>, {" "}
+              abaixo pelo seu <strong>aparelho celular</strong>  {" "}
+              para assinar o seu contrato e receber o empréstimo.
+            </p>
 
             {contractData ? (
               <Link

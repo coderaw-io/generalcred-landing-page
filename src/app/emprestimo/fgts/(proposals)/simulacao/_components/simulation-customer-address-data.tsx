@@ -3,11 +3,21 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
+import {
+  InfoIcon,
+  LoaderCircleIcon,
+  LocateFixedIcon,
+  MapIcon,
+  MapPinCheckInsideIcon,
+  MapPinIcon,
+  MapPinnedIcon,
+  PinIcon
+} from "lucide-react";
+
 import { ViaCepResponse } from "@/@types/address/viacep";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
 import { CustomerSchema } from "@/schemas/simulation-form-schema";
 import { maskNumber } from "@/utils/mask-number";
@@ -16,14 +26,11 @@ import { useFormContext } from "react-hook-form";
 
 export function SimulationCustomerAddressData() {
   const {
-    trigger,
     register,
     watch,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useFormContext<CustomerSchema>();
-
-  const { nextStep } = useStepper();
 
   const zipCode = watch("entity_attributes.address_attributes.zip_code");
   const addressNumber = watch("entity_attributes.address_attributes.number");
@@ -35,19 +42,21 @@ export function SimulationCustomerAddressData() {
           `https://viacep.com.br/ws/${zipCode.replace("-", "")}/json/`
         );
 
+        if (data.errors) {
+          toast.error("ERRO AO BUSCAR DADOS DO CEP INFORMADO, TENTE NOVAMENTE.");
+        }
+
         if (!data.errors) {
           setValue("entity_attributes.address_attributes.street", data.logradouro || "");
           setValue("entity_attributes.address_attributes.district", data.bairro || "");
           setValue("entity_attributes.address_attributes.city", data.localidade || "");
           setValue("entity_attributes.address_attributes.state", data.uf || "");
-          setValue("entity_attributes.address_attributes.complement", data.complemento || "");
         }
       } catch {
-        console.error("Erro ao buscar o CEP:", errors);
         toast.error("ERRO AO BUSCAR DADOS DO CEP INFORMADO, TENTE NOVAMENTE.")
       }
     }
-  }, [zipCode, setValue, errors]);
+  }, [zipCode, setValue]);
 
   useEffect(() => {
     handleCepChange();
@@ -59,19 +68,6 @@ export function SimulationCustomerAddressData() {
       setValue("entity_attributes.address_attributes.number", maskNumber(addressNumber));
     }
   }, [zipCode, addressNumber, setValue]);
-
-  async function handleNextStep() {
-    const isValid = await trigger([
-      "entity_attributes.address_attributes.zip_code",
-      "entity_attributes.address_attributes.street",
-      "entity_attributes.address_attributes.number",
-      "entity_attributes.address_attributes.district",
-      "entity_attributes.address_attributes.city",
-      "entity_attributes.address_attributes.state",
-      "entity_attributes.address_attributes.complement"
-    ]);
-    if (isValid) nextStep();
-  }
 
   return (
     <div className="py-12 space-y-6">
@@ -87,7 +83,8 @@ export function SimulationCustomerAddressData() {
       <div className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="zip_code">
+            <Label htmlFor="zip_code" className="flex items-center gap-2">
+              <MapPinIcon className="size-4" />
               CEP
             </Label>
 
@@ -104,7 +101,8 @@ export function SimulationCustomerAddressData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="street">
+            <Label htmlFor="street" className="flex items-center gap-2">
+              <MapIcon className="size-4" />
               Endereço
             </Label>
             <Input
@@ -112,7 +110,7 @@ export function SimulationCustomerAddressData() {
               className={cn(
                 errors?.entity_attributes?.address_attributes?.street
                   ? "w-full border-destructive border-2 focus-visible:ring-0"
-                  : "w-full border-input"
+                  : "w-full border-input disabled:bg-border font-medium"
               )}
               {...register("entity_attributes.address_attributes.street")}
               disabled
@@ -122,7 +120,8 @@ export function SimulationCustomerAddressData() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="number">
+            <Label htmlFor="number" className="flex items-center gap-2">
+              <PinIcon className="size-4" />
               Número
             </Label>
 
@@ -139,7 +138,8 @@ export function SimulationCustomerAddressData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="district">
+            <Label htmlFor="district" className="flex items-center gap-2">
+              <MapPinnedIcon className="size-4" />
               Bairro
             </Label>
 
@@ -148,7 +148,7 @@ export function SimulationCustomerAddressData() {
               className={cn(
                 errors?.entity_attributes?.address_attributes?.district
                   ? "w-full border-destructive border-2 focus-visible:ring-0"
-                  : "w-full border-input"
+                  : "w-full border-input disabled:bg-border font-medium"
               )}
               {...register("entity_attributes.address_attributes.district")}
               disabled
@@ -158,7 +158,8 @@ export function SimulationCustomerAddressData() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center gap-4">
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="city">
+            <Label htmlFor="city" className="flex items-center gap-2">
+              <LocateFixedIcon className="size-4" />
               Cidade
             </Label>
 
@@ -167,7 +168,7 @@ export function SimulationCustomerAddressData() {
               className={cn(
                 errors?.entity_attributes?.address_attributes?.city
                   ? "w-full border-destructive border-2 focus-visible:ring-0"
-                  : "w-full border-input"
+                  : "w-full border-input disabled:bg-border font-medium"
               )}
               {...register("entity_attributes.address_attributes.city")}
               disabled
@@ -175,7 +176,8 @@ export function SimulationCustomerAddressData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="state">
+            <Label htmlFor="state" className="flex items-center gap-2">
+              <MapPinCheckInsideIcon className="size-4" />
               Estado
             </Label>
 
@@ -184,7 +186,7 @@ export function SimulationCustomerAddressData() {
               className={cn(
                 errors?.entity_attributes?.address_attributes?.state
                   ? "w-full border-destructive border-2 focus-visible:ring-0"
-                  : "w-full border-input"
+                  : "w-full border-input disabled:bg-border font-medium"
               )}
               {...register("entity_attributes.address_attributes.state")}
               disabled
@@ -192,7 +194,8 @@ export function SimulationCustomerAddressData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="city">
+            <Label htmlFor="city" className="flex items-center gap-2">
+              <InfoIcon className="size-4" />
               Complemento (opcional)
             </Label>
 
@@ -204,18 +207,23 @@ export function SimulationCustomerAddressData() {
                   : "w-full border-input"
               )}
               {...register("entity_attributes.address_attributes.complement")}
-              disabled
             />
           </div>
         </div>
 
         <div className="w-full pt-6">
           <Button
-            type="button"
+            type="submit"
             size="lg"
             className="w-full"
-            onClick={handleNextStep}>
-            Próxima etapa
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                Cadastrando
+                <LoaderCircleIcon className="size-4 animate-spin" />
+              </>
+            ) : "Finalizar o cadastro"}
           </Button>
         </div>
       </div>

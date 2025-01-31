@@ -1,6 +1,15 @@
 "use client"
 
 import {
+  BlendIcon,
+  ComponentIcon,
+  ContactRoundIcon,
+  LandmarkIcon,
+  UserIcon,
+  UserRoundIcon
+} from "lucide-react";
+
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -31,7 +40,7 @@ export function SimulationCustomerData() {
   } = useFormContext<CustomerSchema>();
 
   const { nextStep } = useStepper();
-  
+
   const rg = watch("rg");
 
   useEffect(() => {
@@ -44,6 +53,8 @@ export function SimulationCustomerData() {
       "gender_customer",
       "mother_name",
       "father_name",
+      "entity_attributes.bank_account_attributes.kind_pix",
+      "entity_attributes.bank_account_attributes.pix",
     ]);
     if (isValid) nextStep();
   }
@@ -62,7 +73,8 @@ export function SimulationCustomerData() {
       <div className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="rg">
+            <Label htmlFor="rg" className="flex items-center gap-2">
+              <ContactRoundIcon className="size-4" />
               RG
             </Label>
 
@@ -79,7 +91,8 @@ export function SimulationCustomerData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="gender_customer">
+            <Label htmlFor="gender_customer" className="flex items-center gap-2">
+              <BlendIcon className="size-4" />
               Sexo
             </Label>
             <Controller
@@ -87,7 +100,13 @@ export function SimulationCustomerData() {
               control={control}
               render={({ field }) => (
                 <Select value={field.value || ""} onValueChange={field.onChange}>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger
+                    className={cn(
+                      errors?.gender_customer
+                        ? "w-full border-destructive border-2 focus-visible:ring-0"
+                        : "w-full border-input"
+                    )}
+                  >
                     <SelectValue placeholder="Escolha uma opção" />
                   </SelectTrigger>
                   <SelectContent>
@@ -101,18 +120,13 @@ export function SimulationCustomerData() {
                 </Select>
               )}
             />
-
-            {errors.gender_customer && (
-              <span className="pl-2 text-sm text-primary-red font-medium italic">
-                {errors.gender_customer.message}
-              </span>
-            )}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="mother_name">
+            <Label htmlFor="mother_name" className="flex items-center gap-2">
+              <UserRoundIcon className="size-4" />
               Nome da mãe
             </Label>
 
@@ -129,7 +143,8 @@ export function SimulationCustomerData() {
           </div>
 
           <div className="flex flex-col space-y-3">
-            <Label htmlFor="father_name">
+            <Label htmlFor="father_name" className="flex items-center gap-2">
+              <UserIcon className="size-4" />
               Nome do pai (opcional)
             </Label>
 
@@ -142,6 +157,59 @@ export function SimulationCustomerData() {
                   : "w-full border-input"
               )}
               {...register("father_name")}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          <div className="flex flex-col space-y-3">
+            <Label htmlFor="kind_pix" className="flex items-center gap-2">
+              <LandmarkIcon className="size-4" />
+              Tipo de chave PIX
+            </Label>
+
+            <Controller
+              name="entity_attributes.bank_account_attributes.kind_pix"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value || ""} onValueChange={field.onChange}>
+                  <SelectTrigger
+                    className={cn(
+                      errors?.entity_attributes?.bank_account_attributes?.kind_pix
+                        ? "w-full border-destructive border-2 focus-visible:ring-0"
+                        : "w-full border-input"
+                    )}
+                  >
+                    <SelectValue placeholder="Escolha uma opção" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Chaves disponíveis</SelectLabel>
+                      <SelectItem value="cpf_cnpj">CPF ou CNPJ</SelectItem>
+                      <SelectItem value="email">E-mail</SelectItem>
+                      <SelectItem value="phone">Telefone</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          </div>
+
+          <div className="flex flex-col space-y-3">
+            <Label htmlFor="pix" className="flex items-center gap-2">
+              <ComponentIcon className="size-4" />
+              Sua chave PIX
+            </Label>
+
+            <Input
+              placeholder="Informe a sua chave PIX"
+              maxLength={60}
+              className={cn(
+                errors?.entity_attributes?.bank_account_attributes?.pix
+                  ? "w-full border-destructive border-2 focus-visible:ring-0"
+                  : "w-full border-input"
+              )}
+              {...register("entity_attributes.bank_account_attributes.pix")}
             />
           </div>
         </div>
