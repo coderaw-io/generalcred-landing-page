@@ -8,19 +8,18 @@ import Link from "next/link";
 import { ContractResponse } from "@/@types/fgts/contract";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
 import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function FgtsGenerateContractPage() {
+  const { contractId: id } = useLoanProposals();
+
   const getContractData = useCallback(async () => {
-    const id = localStorage.getItem("contract_id");
-    if (!id) return;
-
-    const response = await axios.get<ContractResponse>(`/api/fgts/contract/${id}`)
-
+    const response = await axios.get<ContractResponse>(`/api/fgts/contract/${id}`);
     return response.data;
-  }, []);
+  }, [id]);
 
   const [contractData, setContractData] = useState<ContractResponse | null>(null)
 

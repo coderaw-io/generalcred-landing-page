@@ -7,7 +7,9 @@ export function useLoanProposals() {
     loanProposals,
     setLoanProposals,
     simulationData,
-    setSimulationData
+    setSimulationData,
+    contractId,
+    setContractId
   } = useLoanProposalsStore();
 
   return {
@@ -16,6 +18,8 @@ export function useLoanProposals() {
     loanProposals,
     setLoanProposals,
     simulationData,
-    setSimulationData
+    setSimulationData,
+    contractId,
+    setContractId,
   };
 }

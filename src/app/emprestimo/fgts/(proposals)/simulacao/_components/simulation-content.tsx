@@ -17,7 +17,7 @@ import { SimulationStepper } from "./simulation-stepper";
 export function SimulationContent() {
   const router = useRouter();
 
-  const { formData: personalData } = useLoanProposals();
+  const { formData: personalData, setContractId } = useLoanProposals();
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -91,9 +91,10 @@ export function SimulationContent() {
       
       toast.success("Dados do cadastro enviados com sucesso!");
       localStorage.setItem("contract_id", createContract.data.id);
+      setContractId(createContract.data.id);
       router.push("/emprestimo/fgts/gerar/contrato");
     } catch {
-      toast.error("ERRO AO CADASTRAR SEUS DADOS, TENTE NOVAMENTE.")
+      toast.error("ERRO AO CADASTRAR SEUS DADOS, TENTE NOVAMENTE.");
     }
   });
 

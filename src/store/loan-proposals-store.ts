@@ -17,6 +17,8 @@ interface LoanProposalsStore {
   setLoanProposals: (proposals: FgtsTable[]) => void
   simulationData: SimulationResponse | null
   setSimulationData: (data: SimulationResponse) => void
+  contractId: string | null
+  setContractId: (id: string) => void
 }
 
 export const useLoanProposalsStore = create<LoanProposalsStore>((set) => ({
@@ -25,5 +27,7 @@ export const useLoanProposalsStore = create<LoanProposalsStore>((set) => ({
   loanProposals: null,
   setLoanProposals: (proposals) => set({ loanProposals: proposals }),
   simulationData: null,
-  setSimulationData: (data) => set({ simulationData: data })
+  setSimulationData: (data) => set({ simulationData: data }),
+  contractId: null,
+  setContractId: (id) => set({ contractId: id }),
 }))
