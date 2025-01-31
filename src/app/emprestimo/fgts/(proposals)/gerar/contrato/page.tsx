@@ -25,14 +25,19 @@ export default function FgtsGenerateContractPage() {
 
   useEffect(() => {
     getContractData().then((data) => {
-      if (data) setContractData(data);
+      if (data) {
+        setContractData(data);
+        setTimeout(() => {
+          window.location.href = `${contractData?.onboarding_link}`
+        }, 3000)
+      }
     })
-  }, [getContractData]);
+  }, [getContractData, contractData?.onboarding_link]);
 
   const router = useRouter();
   const handleRedirect = () => {
     localStorage.clear();
-    router.push("/");
+    router.push(`${contractData ? contractData.onboarding_link : "/"}`);
   }
 
   return (
