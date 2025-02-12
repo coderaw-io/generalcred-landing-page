@@ -7,6 +7,7 @@ import { Footer } from "@/components/shared/footer"
 import { Header } from "@/components/shared/header"
 import { InformationSection } from "@/components/shared/information-section"
 import { WhatsappButton } from "@/components/shared/whatsapp-button"
+import { AlertDialogProvider } from "@/contexts/alert-dialog-context"
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store"
 import { PersonalDataForm } from "./_components/form-data"
 
@@ -14,7 +15,7 @@ export default function FgtsPage() {
   const { setFormData, setLoanProposals } = useLoanProposals();
 
   return (
-    <>
+    <AlertDialogProvider>
       <div className="min-h-screen overflow-hidden bg-gradient-to-r from-[#000814] via-[#051923] to-slate-950">
         <Header />
         <main className="w-full pt-12 md:pt-16">
@@ -33,6 +34,6 @@ export default function FgtsPage() {
         <Footer />
       </div>
       <WhatsappButton />
-    </>
+    </AlertDialogProvider>
   )
 }
