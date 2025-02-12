@@ -10,7 +10,7 @@ const AlertDialogContext = createContext<AlertDialogContextProps | undefined>(un
 
 export function AlertDialogProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [_, setMessage] = useState("");
 
   const showDialog = (msg: string) => {
     setMessage(msg);
@@ -24,7 +24,7 @@ export function AlertDialogProvider({ children }: { children: React.ReactNode })
   return (
     <AlertDialogContext.Provider value={{ showDialog, hideDialog }}>
       {children}
-      {isOpen && <CarouselAlert message={message} onClose={hideDialog} />}
+      {isOpen && <CarouselAlert onClose={hideDialog} />}
     </AlertDialogContext.Provider>
   );
 }
