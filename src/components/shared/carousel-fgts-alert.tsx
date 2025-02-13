@@ -16,7 +16,7 @@ interface CarouselFgtsAlertProps {
 export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
   return (
     <AlertDialog open onOpenChange={onClose}>
-      <AlertDialogContent className="size-full overflow-y-auto overflow-x-hidden sm:h-[780px] sm:max-w-5xl sm:w-full sm:overflow-hidden">
+      <AlertDialogContent className="size-full overflow-y-auto overflow-x-hidden sm:h-[760px] sm:max-w-5xl sm:w-full">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-xl text-left font-bold sm:hidden">
             Ops ... <br />
@@ -35,10 +35,11 @@ export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
             </strong>
           </AlertDialogDescription>
 
-          <AlertDialogTitle className="hidden sm:block text-2xl font-bold">
-            Ops ... Parece que falta uma etapa ainda para você conseguir o seu empréstimo.
+          <AlertDialogTitle className="hidden sm:block text-2xl font-bold text-center">
+            Ops ... Parece que falta uma etapa ainda para <br />
+            você conseguir o seu empréstimo.
           </AlertDialogTitle>
-          <AlertDialogDescription className="hidden sm:block max-w-3xl text-lg">
+          <AlertDialogDescription className="hidden sm:block max-w-3xl mx-auto text-lg text-center">
             Você deve acessar o aplicativo oficial do <strong>FGTS</strong> {" "}
             e autorizar o <strong>banco UY3</strong> {" "}
             para conseguir realizar a busca e consultas dos seus dados referente ao seu <strong>FGTS</strong>. <br />
@@ -46,7 +47,7 @@ export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <div className="flex justify-start items-center">
+        <div className="flex justify-start items-center md:justify-center">
           <AlertDialogCancel
             className="bg-slate-950 text-primary-gold border-none w-[38%] text-xs sm:w-1/2 sm:text-base"
             onClick={onClose}
@@ -55,7 +56,7 @@ export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
           </AlertDialogCancel>
         </div>
 
-        <div className="w-1/3 pl-6 sm:w-[70%] sm:pl-24 sm:p-0">
+        <div className="w-1/3 pl-6 sm:w-12 sm:pl-10 sm:p-0 md:flex">
           <CarouselSection />
         </div>
       </AlertDialogContent>
