@@ -13,19 +13,24 @@ export default function GlobalErrorPage() {
       <Header />
       <div className="bg-slate-100 size-full overflow-hidden">
         <div className="w-full p-6 md:max-w-2xl md:mx-auto lg:max-w-4xl">
-          <div className="flex flex-col items-center space-y-4 pt-6 pb-16">
-            <ErrorIcon className="w-1/2 md:w-[60%]" />
+          <div className="flex flex-col items-center space-y-4 pt-24 pb-16 sm:pt-6">
+            <ErrorIcon className="w-[70%] sm:w-[60%]" />
 
-            <h2 className="text-2xl text-center font-bold md:text-4xl">
+            <h2 className="text-2xl font-bold sm:text-center md:text-4xl">
               Ops... Ocorreu um erro interno
             </h2>
 
-            <p className="text-muted-foreground font-medium sm:text-lg">
-              Parece que o sistema da Caixa Econômica Federal está com instabilidade. <br />
-              Entre em contato via whatsapp para falar com o nosso suporte.
+            <p className="max-w-2xl text-muted-foreground font-medium sm:text-lg sm:text-center">
+              Parece que o sistema da <strong>Caixa Econômica Federal</strong> {" "}
+              no momento possui algumas instabilidades. {" "}
+              Entre em contato conosco via <strong>whatsapp</strong> para falar com o nosso suporte.
             </p>
 
-            <Link href="https://wa.me/5511962160535" target="_blank">
+            <Link
+              className="pt-6"
+              href="https://wa.me/5511962160535"
+              target="_blank"
+            >
               <Button
                 type="button"
                 size="lg"
