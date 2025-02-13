@@ -36,14 +36,14 @@ export function Header() {
           <Button
             type="button"
             variant="outline"
-            className="py-2 px-4 sm:py-4 sm:px-6"
+            className="hidden sm:flex py-2 px-4 sm:py-4 sm:px-6"
             onClick={handleRedirect}
           >
             Página inicial
           </Button>
 
           <div className="flex items-center space-x-2">
-            <p className="text-white">
+            <p className="text-white truncate md:text-base">
               Site seguro
             </p>
             <ShieldCheckIcon className="text-emerald-500 size-5 sm:size-6" />

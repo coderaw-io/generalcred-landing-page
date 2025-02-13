@@ -22,12 +22,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
 import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
 import { CustomerSchema } from "@/schemas/simulation-form-schema";
 import { maskNumber } from "@/utils/mask-number";
 import { useEffect } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 
 export function SimulationCustomerData() {
   const {
@@ -39,6 +40,7 @@ export function SimulationCustomerData() {
     formState: { errors },
   } = useFormContext<CustomerSchema>();
 
+  const { formData: personalData } = useLoanProposals();
   const { nextStep } = useStepper();
 
   const rg = watch("rg");
@@ -46,6 +48,19 @@ export function SimulationCustomerData() {
   useEffect(() => {
     if (rg !== undefined) setValue("rg", maskNumber(rg));
   }, [rg, setValue]);
+
+  const pixKeyType = useWatch({
+    control,
+    name: "entity_attributes.bank_account_attributes.kind_pix",
+  })
+
+  useEffect(() => {
+    if (pixKeyType === "cpf_cnpj" && personalData) {
+      setValue("entity_attributes.bank_account_attributes.pix", personalData.cpf);
+    } else if (pixKeyType !== "cpf_cnpj") {
+      setValue("entity_attributes.bank_account_attributes.pix", "");
+    }
+  }, [pixKeyType, setValue, personalData?.cpf])
 
   async function handleNextStep() {
     const isValid = await trigger([
@@ -204,6 +219,7 @@ export function SimulationCustomerData() {
             <Input
               placeholder="Informe a sua chave PIX"
               maxLength={60}
+              disabled={pixKeyType === "cpf_cnpj"}
               className={cn(
                 errors?.entity_attributes?.bank_account_attributes?.pix
                   ? "w-full border-destructive border-2 focus-visible:ring-0"

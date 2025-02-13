@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import {
+  ArrowLeftIcon,
   InfoIcon,
   LoaderCircleIcon,
   LocateFixedIcon,
@@ -18,6 +19,7 @@ import { ViaCepResponse } from "@/@types/address/viacep";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useStepper } from "@/hooks/use-stepper";
 import { cn } from "@/lib/utils";
 import { CustomerSchema } from "@/schemas/simulation-form-schema";
 import { maskNumber } from "@/utils/mask-number";
@@ -31,6 +33,8 @@ export function SimulationCustomerAddressData() {
     setValue,
     formState: { errors, isSubmitting },
   } = useFormContext<CustomerSchema>();
+
+  const { previousStep } = useStepper();
 
   const zipCode = watch("entity_attributes.address_attributes.zip_code");
   const addressNumber = watch("entity_attributes.address_attributes.number");
@@ -211,7 +215,18 @@ export function SimulationCustomerAddressData() {
           </div>
         </div>
 
-        <div className="w-full pt-6">
+        <div className="w-full flex flex-col space-y-6 pt-6 md:flex-row md:items-center md:space-y-0 md:space-x-4">
+          <Button
+            type="button"
+            size="lg"
+            variant="outline"
+            className="hidden md:flex items-center gap-2 text-slate-950 border-2 border-slate-950 w-full hover:bg-slate-950 hover:text-primary-gold hover:border-none"
+            onClick={previousStep}
+          >
+            <ArrowLeftIcon className="size-4" />
+            Voltar
+          </Button>
+
           <Button
             type="submit"
             size="lg"
@@ -224,6 +239,17 @@ export function SimulationCustomerAddressData() {
                 <LoaderCircleIcon className="size-4 animate-spin" />
               </>
             ) : "Finalizar o cadastro"}
+          </Button>
+
+          <Button
+            type="button"
+            size="lg"
+            variant="outline"
+            className="flex items-center gap-2 text-slate-950 border-2 border-slate-950 w-full hover:bg-slate-950 hover:text-primary-gold hover:border-none md:hidden"
+            onClick={previousStep}
+          >
+            <ArrowLeftIcon className="size-4" />
+            Voltar
           </Button>
         </div>
       </div>
