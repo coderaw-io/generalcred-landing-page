@@ -16,7 +16,7 @@ interface CarouselAlertProps {
 export function CarouselAlert({ onClose }: CarouselAlertProps) {
   return (
     <AlertDialog open onOpenChange={onClose}>
-      <AlertDialogContent className="size-full overflow-y-auto sm:h-[780px] sm:max-w-5xl sm:w-full sm:overflow-hidden">
+      <AlertDialogContent className="size-full overflow-y-auto overflow-x-hidden sm:h-[780px] sm:max-w-5xl sm:w-full sm:overflow-hidden">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-xl text-left font-bold sm:hidden">
             Ops ... <br />
@@ -52,7 +52,7 @@ export function CarouselAlert({ onClose }: CarouselAlertProps) {
           </AlertDialogCancel>
         </div>
 
-        <div className="w-[40%] sm:w-[70%] sm:pl-24 sm:p-0">
+        <div className="w-1/3 pl-6 sm:w-[70%] sm:pl-24 sm:p-0">
           <CarouselSection />
         </div>
       </AlertDialogContent>

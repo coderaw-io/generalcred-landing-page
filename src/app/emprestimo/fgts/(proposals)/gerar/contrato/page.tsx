@@ -89,9 +89,9 @@ export default function FgtsGenerateContractPage() {
 
             <p className="font-medium text-muted-foreground">
               Para realizar esta ação {" "}
-              <strong>clique no link</strong>, {" "}
-              abaixo pelo seu <strong>aparelho celular</strong>  {" "}
-              para assinar o seu contrato e receber o empréstimo.
+              <strong>clique no link abaixo</strong>, {" "}
+              ou no <strong>SMS recebido</strong> no celular cadastrado.  {" "}
+              Assine o seu contrato digitalmente e receba o seu empréstimo.
             </p>
 
             {contractData ? (

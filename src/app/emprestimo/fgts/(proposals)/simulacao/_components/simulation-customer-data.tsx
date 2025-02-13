@@ -213,7 +213,7 @@ export function SimulationCustomerData() {
           <div className="flex flex-col space-y-3">
             <Label htmlFor="pix" className="flex items-center gap-2">
               <ComponentIcon className="size-4" />
-              Sua chave PIX
+              Informe a chave PIX
             </Label>
 
             <Input

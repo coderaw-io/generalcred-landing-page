@@ -5,8 +5,8 @@ export function Footer() {
   return (
     <footer className="w-full bg-white">
       <div className="max-w-screen-2xl w-full mx-auto px-6 py-8 sm:px-6 lg:px-8">
-        <div 
-        data-aos="fade-right"
+        <div
+          data-aos="fade-right"
           className="grid grid-cols-1 gap-8 lg:flex lg:justify-between lg:items-center"
         >
           <div className="max-w-md w-full flex flex-col space-y-6">
@@ -81,11 +81,11 @@ export function Footer() {
 
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-muted-foreground">
                 <a className="hover:opacity-75" href="">
-                  generalcred@generalcred.com.br
+                  atendimento@generalcred.com.br
                 </a>
 
                 <a className="hover:opacity-75" href="">
-                  11 95229 6814
+                  (11) 962161040
                 </a>
               </nav>
             </div>
