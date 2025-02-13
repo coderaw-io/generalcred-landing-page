@@ -34,8 +34,18 @@ export function LoanProposals() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSelectProposal = (tableName: string, formData: any) => {
-    setSelectedTableName(tableName === selectedTableName ? null : tableName)
-    setSelectedProposalData(formData)
+    setSelectedTableName(tableName === selectedTableName ? null : tableName);
+    setSelectedProposalData(formData);
+    if (!selectedTableName) {
+      toast.success(
+        "Você selecionou sua proposta! Agora, deslize para cima e clique no botão de assinar o contrato da sua proposta.",
+        {
+          duration: 7000
+        }
+      );
+    } else {
+      toast.error("Você deve selecionar pelo menos uma opção das propostas para prosseguir.");
+    }
   }
 
   async function handleSelectedProposal() {
