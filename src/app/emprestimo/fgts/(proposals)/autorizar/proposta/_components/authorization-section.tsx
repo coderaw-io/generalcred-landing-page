@@ -10,9 +10,12 @@ import { Label } from "@/components/ui/label";
 import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
 import { useStepper } from "@/hooks/use-stepper";
 import { LoaderCircleIcon, TriangleAlertIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function AuthorizationSection() {
+  const router = useRouter();
+
   const { nextStep } = useStepper();
   const { formData: data, setFormData } = useLoanProposals();
 
@@ -31,10 +34,11 @@ export function AuthorizationSection() {
         phonenumber: data.phonenumber,
         email: data.email,
       });
-      
+
       nextStep();
     } catch {
       toast.error("OCORREU UM ERRO AO BUSCAR PROPOSTAS!  Verifique a autorização do banco no seu app.");
+      router.push("/error");
     } finally {
       setIsLoading(false);
     }

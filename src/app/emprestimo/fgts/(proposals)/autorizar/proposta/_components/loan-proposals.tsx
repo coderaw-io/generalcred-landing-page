@@ -70,8 +70,9 @@ export function LoanProposals() {
         router.push("/emprestimo/fgts/simulacao");
       }
     } catch (error) {
-      console.log(error)
-      toast.error("ERRO AO VALIDAR CONTRATO! TENTE NOVAMENTE.")
+      console.log(error);
+      toast.error("ERRO AO VALIDAR CONTRATO! TENTE NOVAMENTE.");
+      router.push("/error");
     } finally {
       setIsLoading(false);
     }

@@ -13,8 +13,8 @@ export default function GlobalErrorPage() {
       <Header />
       <div className="bg-slate-100 size-full overflow-hidden">
         <div className="w-full p-6 md:max-w-2xl md:mx-auto lg:max-w-4xl">
-          <div className="flex flex-col items-center space-y-6 pt-6 pb-16">
-            <ErrorIcon className="w-1/2 md:w-3/4" />
+          <div className="flex flex-col items-center space-y-4 pt-6 pb-16">
+            <ErrorIcon className="w-1/2 md:w-[60%]" />
 
             <h2 className="text-2xl text-center font-bold md:text-4xl">
               Ops... Ocorreu um erro interno

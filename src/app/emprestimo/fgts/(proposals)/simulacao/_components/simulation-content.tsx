@@ -87,13 +87,14 @@ export function SimulationContent() {
           Token: `${localStorage.getItem("token")}`
         }
       });
-      
+
       toast.success("Dados do cadastro enviados com sucesso!");
       localStorage.setItem("contract_id", createContract.data.id);
       setContractId(createContract.data.id);
       router.push("/emprestimo/fgts/gerar/contrato");
     } catch {
       toast.error("ERRO AO CADASTRAR SEUS DADOS, TENTE NOVAMENTE.");
+      router.push("/error");
     }
   });
 

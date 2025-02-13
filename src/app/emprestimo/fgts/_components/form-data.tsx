@@ -121,6 +121,7 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
       ) {
         setShowCarouselAlert(true);
       } else {
+        router.push("/error");
         handleError(error);
       }
     }

@@ -14,19 +14,26 @@ import { useRouter } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
 
 export default function FgtsGenerateContractPage() {
+  const router = useRouter();
+
   const { contractId: id } = useLoanProposals();
 
   const getContractData = useCallback(async (accessToken: string) => {
-    const response = await dataClient.get<ContractResponse>(`/fgts/contract?id=${id}`,
-      {
-        headers: {
-          Token: `${accessToken}`,
-        },
-      }
-    );
+    try {
+      const response = await dataClient.get<ContractResponse>(`/fgts/contract?id=${id}`,
+        {
+          headers: {
+            Token: `${accessToken}`,
+          },
+        }
+      );
 
-    return response.data;
-  }, [id]);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      router.push("/error");
+    }
+  }, [id, router]);
 
   const [contractData, setContractData] = useState<ContractResponse | null>(null);
 
@@ -39,7 +46,6 @@ export default function FgtsGenerateContractPage() {
     })
   }, [getContractData, contractData?.onboarding_link]);
 
-  const router = useRouter();
   const handleRedirect = () => {
     localStorage.clear();
     router.push(`${contractData ? contractData.onboarding_link : "/"}`);
