@@ -11,7 +11,7 @@ import { useLoanProposals } from "@/hooks/use-loan-proposals-store";
 import { dataClient } from "@/lib/axios";
 import { CheckCircle2Icon, CheckIcon, LoaderCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 
 export default function FgtsGenerateContractPage() {
   const { contractId: id } = useLoanProposals();
@@ -30,7 +30,7 @@ export default function FgtsGenerateContractPage() {
 
   const [contractData, setContractData] = useState<ContractResponse | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const accessToken = localStorage.getItem("token");
     if (!accessToken) return;
 

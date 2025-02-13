@@ -185,7 +185,7 @@ export function SimulationCustomerData() {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Chaves disponíveis</SelectLabel>
-                      <SelectItem value="cpf_cnpj">CPF ou CNPJ</SelectItem>
+                      <SelectItem value="cpf_cnpj">CPF</SelectItem>
                       <SelectItem value="email">E-mail</SelectItem>
                       <SelectItem value="phone">Telefone</SelectItem>
                     </SelectGroup>

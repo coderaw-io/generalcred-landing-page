@@ -4,7 +4,11 @@ export const formSchema = z.object({
   name: z
     .string()
     .max(100, "Nome deve ter no máximo 100 caracteres")
-    .min(1, "O nome completo é obrigatório"),
+    .min(1, "O nome completo é obrigatório")
+    .refine(value => {
+      const names = value.trim().split(" ");
+      return names.length >= 2;
+    }, "Você deve preencher o primeiro e o último nome"),
   cpf: z
     .string()
     .length(14, "CPF deve conter 11 dígitos")
