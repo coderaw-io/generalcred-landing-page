@@ -47,7 +47,10 @@ export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
         </AlertDialogHeader>
 
         <div className="flex justify-start items-center">
-          <AlertDialogCancel className="w-[38%] text-xs sm:w-1/2 sm:text-base" onClick={onClose}>
+          <AlertDialogCancel
+            className="bg-slate-950 text-primary-gold border-none w-[38%] text-xs sm:w-1/2 sm:text-base"
+            onClick={onClose}
+          >
             Já autorizei o banco pelo app, quero prosseguir
           </AlertDialogCancel>
         </div>
