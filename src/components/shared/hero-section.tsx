@@ -6,7 +6,7 @@ export function HeroSection() {
     <div className="w-full text-white space-y-8 lg:relative">
       <h1 className="max-w-2xl w-full text-3xl md:text-5xl font-bold leading-tight">
         ANTECIPE ATÉ {" "}
-        <span className="text-primary-gold">7 PARCELAS</span> DO SEU SAQUE
+        <span className="text-primary-gold">10 PARCELAS</span> DO SEU SAQUE
         ANIVERSÁRIO FGTS
       </h1>
 
@@ -25,10 +25,10 @@ export function HeroSection() {
         </li>
       </ul>
 
-      <Image 
-        src={heroImg} 
-        alt="Passo 5" 
-        className="object-cover w-full rounded-[0.3rem] md:w-[90%]" 
+      <Image
+        src={heroImg}
+        alt="Passo 5"
+        className="object-cover w-full rounded-[0.3rem] md:w-[90%]"
         priority
       />
     </div>
