@@ -119,9 +119,9 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
         error.response?.data?.description ===
         "Instituição Fiduciária não possui autorização do Trabalhador para Operação Fiduciária."
       ) {
-        setShowCarouselAlert(true)
+        setShowCarouselAlert(true);
       } else {
-        handleError(error)
+        handleError(error);
       }
     }
   }

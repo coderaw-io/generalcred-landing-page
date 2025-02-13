@@ -1,6 +1,6 @@
-import { AOSInit } from "@/components/shared/aos-init";
 import "./globals.css";
 
+import { AOSInit } from "@/components/shared/aos-init";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Toaster } from 'react-hot-toast';
@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "FGTS | Generalcred",
-  description: "Infinita como sua imaginação",
+  description: "Infinita como a sua imaginação",
 };
 
 export default function RootLayout({

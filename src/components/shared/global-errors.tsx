@@ -10,7 +10,7 @@ interface GlobalErrorHandlerProps {
 }
 
 export function GlobalErrorHandler({ error }: GlobalErrorHandlerProps) {
-  const { showDialog } = useAlertDialog()
+  const { showDialog } = useAlertDialog();
 
   useEffect(() => {
     if (axios.isAxiosError(error)) {
@@ -22,10 +22,10 @@ export function GlobalErrorHandler({ error }: GlobalErrorHandlerProps) {
           "Ops ... parece que você ainda não autorizou o banco UY3 no app do FGTS!!\n\nPara conseguir simular suas propostas de empréstimos, você deve autorizar o banco UY3 no aplicativo oficial do FGTS.",
         )
       } else if (errorMessage === "Trabalhador não possui adesão ao saque aniversário vigente na data corrente.") {
-        toast.error("O trabalhador não possui saldo FGTS para empréstimo disponível.")
+        toast.error("O trabalhador não possui saldo FGTS para empréstimo disponível.");
       }
     } else {
-      toast.error("Ocorreu um erro ao consultar o seu saldo FGTS. Tente novamente.")
+      toast.error("Ocorreu um erro ao consultar o seu saldo FGTS. Tente novamente.");
     }
   }, [error, showDialog])
 
