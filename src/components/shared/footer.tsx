@@ -80,11 +80,11 @@ export function Footer() {
               </p>
 
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-muted-foreground">
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="mailto:atendimento@generalcred.com.br" target="_blank">
                   atendimento@generalcred.com.br
                 </a>
 
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="https://wa.me/5511962161040" target="_blank">
                   (11) 962161040
                 </a>
               </nav>
