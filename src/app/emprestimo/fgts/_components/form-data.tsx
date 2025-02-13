@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 import type { FgtsTable } from "@/@types/fgts/loan";
-import { CarouselAlert } from "@/components/shared/carousel-alert";
+import { CarouselFgtsAlert } from "@/components/shared/carousel-fgts-alert";
 import { HeroSection } from "@/components/shared/hero-section";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -120,7 +120,14 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
         "Instituição Fiduciária não possui autorização do Trabalhador para Operação Fiduciária."
       ) {
         setShowCarouselAlert(true);
-      } else {
+      } else if (
+        axios.isAxiosError(error) &&
+        error.response?.data?.description ===
+        "Trabalhador não possui adesão ao saque aniversário vigente na data corrente."
+      ) {
+        setShowCarouselAlert(true);
+      }
+      else {
         router.push("/error");
         handleError(error);
       }
@@ -301,7 +308,7 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
       </Form>
 
       {showCarouselAlert && (
-        <CarouselAlert onClose={handleCloseCarouselAlert} />
+        <CarouselFgtsAlert onClose={handleCloseCarouselAlert} />
       )}
     </>
   )

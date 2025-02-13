@@ -1,4 +1,4 @@
-import { CarouselAlert } from "@/components/shared/carousel-alert";
+import { CarouselFgtsAlert } from "@/components/shared/carousel-fgts-alert";
 import { createContext, useContext, useState } from "react";
 
 interface AlertDialogContextProps {
@@ -26,7 +26,7 @@ export function AlertDialogProvider({ children }: { children: React.ReactNode })
   return (
     <AlertDialogContext.Provider value={{ showDialog, hideDialog }}>
       {children}
-      {isOpen && <CarouselAlert onClose={hideDialog} />}
+      {isOpen && <CarouselFgtsAlert onClose={hideDialog} />}
     </AlertDialogContext.Provider>
   );
 }

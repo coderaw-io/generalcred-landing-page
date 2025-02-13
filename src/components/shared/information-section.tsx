@@ -24,7 +24,7 @@ export function InformationSection() {
         siga todos os passos com atenção.
       </p>
 
-      <Link href="https://wa.me/5511962160535" target="_blank">
+      <Link href="https://wa.me/5511962161040" target="_blank">
         <Button
           type="button"
           size="lg"

@@ -13,7 +13,6 @@ import {
 import step1Img from "@/assets/images/carousel-steps-lp-1.jpg";
 import step2Img from "@/assets/images/carousel-steps-lp-2.jpg";
 import step3Img from "@/assets/images/carousel-steps-lp-3.jpg";
-import step4Img from "@/assets/images/carousel-steps-lp-4.jpg";
 import step5Img from "@/assets/images/carousel-steps-lp-5.jpg";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,33 +21,27 @@ const slides = [
   {
     step: 1,
     image: step1Img,
-    title: "Bem-vindo ao FGTS Digital",
-    label: "Acesse sua conta FGTS de forma rápida e segura."
+    title: "Acesse ou crie uma conta no App do FGTS",
+    label: "Basta baixar o app pela sua biblioteca de aplicativos. Entre para fazer o login ou crie uma nova conta caso ainda não tenha."
   },
   {
     step: 2,
     image: step2Img,
-    title: "Saque Aniversário",
-    label: "Consulte as opções disponíveis para seu saque aniversário."
+    title: "Escolha a opção pelo Saque Aniversário",
+    label: "Após se autenticar no app, clique na opção Sistemática de saque do seu FGTS, para conseguir a adesão. Após isso, clique em Optar pelo Saque Aniversário."
   },
   {
     step: 3,
     image: step3Img,
-    title: "Autorização Bancária",
-    label: "Realize a autorização do banco UY3 para a consulta do seu FGTS."
+    title: "Autorizar o Banco UY3 Sociedade de Crédito",
+    label: "Clique em Autorizar bancos a consultarem seu FGTS, após isso selecione Modalidade Saque-Aniversário e em seguida Adicionar Instituição. Procure por UY3 SOCIEDADE DE CRÉDITO DIRETO S/A."
   },
   {
     step: 4,
-    image: step4Img,
-    title: "Antecipação FGTS",
-    label: "Antecipe seu saque aniversário com as melhores condições."
-  },
-  {
-    step: 5,
     image: step5Img,
-    title: "Facilidade na palma da mão",
-    label: "Gerencie seu FGTS de qualquer lugar, a qualquer momento."
-  }
+    title: "Realizar simulação e assinar contrato",
+    label: "Agora que já optou pelo Saque Aniversário e autorizou o banco UY3 Sociedade de Crédito, realize a simulação aqui no nosso site. Após feita a simulação e aprovado o crédito, acesse o link gerado pelo site ou recebido via SMS para formalizar o contrato do empréstimo."
+  },
 ]
 
 export function CarouselSection() {

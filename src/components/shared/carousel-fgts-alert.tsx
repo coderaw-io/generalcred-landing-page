@@ -9,11 +9,11 @@ import {
 
 import { CarouselSection } from "./carousel";
 
-interface CarouselAlertProps {
+interface CarouselFgtsAlertProps {
   onClose: () => void;
 }
 
-export function CarouselAlert({ onClose }: CarouselAlertProps) {
+export function CarouselFgtsAlert({ onClose }: CarouselFgtsAlertProps) {
   return (
     <AlertDialog open onOpenChange={onClose}>
       <AlertDialogContent className="size-full overflow-y-auto overflow-x-hidden sm:h-[780px] sm:max-w-5xl sm:w-full sm:overflow-hidden">

@@ -28,7 +28,7 @@ export default function GlobalErrorPage() {
 
             <Link
               className="flex justify-center items-center pt-6"
-              href="https://wa.me/5511962160535"
+              href="https://wa.me/5511962161040"
               target="_blank"
             >
               <Button

@@ -4,7 +4,7 @@ import Link from "next/link";
 export function WhatsappButton() {
   return (
     <div className="fixed bottom-4 right-4 z-10">
-      <Link href="https://wa.me/5511962160535" target="_blank">
+      <Link href="https://wa.me/5511962161040" target="_blank">
         <Button type="button" className="bg-emerald-400 rounded-full hover:bg-emerald-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
