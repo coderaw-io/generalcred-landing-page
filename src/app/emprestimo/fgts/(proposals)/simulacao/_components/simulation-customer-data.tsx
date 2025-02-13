@@ -60,7 +60,7 @@ export function SimulationCustomerData() {
     } else if (pixKeyType !== "cpf_cnpj") {
       setValue("entity_attributes.bank_account_attributes.pix", "");
     }
-  }, [pixKeyType, setValue, personalData?.cpf])
+  }, [pixKeyType, setValue, personalData?.cpf, personalData])
 
   async function handleNextStep() {
     const isValid = await trigger([

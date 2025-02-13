@@ -12,6 +12,8 @@ export function AlertDialogProvider({ children }: { children: React.ReactNode })
   const [isOpen, setIsOpen] = useState(false);
   const [_, setMessage] = useState("");
 
+  console.log(_);
+
   const showDialog = (msg: string) => {
     setMessage(msg);
     setIsOpen(true);
