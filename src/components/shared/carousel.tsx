@@ -13,6 +13,7 @@ import {
 import step1Img from "@/assets/images/carousel-steps-lp-1.jpg";
 import step2Img from "@/assets/images/carousel-steps-lp-2.jpg";
 import step3Img from "@/assets/images/carousel-steps-lp-3.jpg";
+import step4Img from "@/assets/images/carousel-steps-lp-4.jpg";
 import step5Img from "@/assets/images/carousel-steps-lp-5.jpg";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,9 +39,15 @@ const slides = [
   },
   {
     step: 4,
+    image: step4Img,
+    title: "Realizar a simulação do seu Empréstimo",
+    label: "Agora que você já optou pelo Saque Aniversário, autorizou o banco UY3 Sociedade de Crédito, vamos realizar a simulação aqui no nosso Site ou via Whatsapp e escolher uma proposta de crédito para resgate."
+  },
+  {
+    step: 5,
     image: step5Img,
-    title: "Realizar simulação e assinar contrato",
-    label: "Agora que já optou pelo Saque Aniversário e autorizou o banco UY3 Sociedade de Crédito, realize a simulação aqui no nosso site. Após feita a simulação e aprovado o crédito, acesse o link gerado pelo site ou recebido via SMS para formalizar o contrato do empréstimo."
+    title: "Formalização do seu Contrato",
+    label: "Feita a simulação e aprovado o crédito, acesse o link enviado para você via SMS ou gerado pelo nosso site para assinar os documentos da contratação. Com tudo feito, o dinheiro cairá direto na sua conta em instantes."
   },
 ]
 
