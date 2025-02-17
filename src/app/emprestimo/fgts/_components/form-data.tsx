@@ -92,9 +92,9 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
         email: data.email,
       })
 
-      const getAccessToken = await dataClient.post("/fgts/token")
-      Promise.resolve(getAccessToken)
-      localStorage.setItem("token", getAccessToken.data.token)
+      const getAccessToken = await dataClient.post("/fgts/token");
+      Promise.resolve(getAccessToken);
+      localStorage.setItem("token", getAccessToken.data.token);
 
       const requestData = {
         cpf: data.cpf,
@@ -106,13 +106,13 @@ export function PersonalDataForm({ setFormData, setLoanProposals }: PersonalData
         headers: {
           Token: `${localStorage.getItem("token")}`,
         },
-      })
+      });
 
-      const { fgtsTables } = response.data
+      const { fgtsTables } = response.data;
 
-      setLoanProposals(fgtsTables)
-      toast.success("Pré cadastro realizado com sucesso.")
-      router.push("/emprestimo/fgts/autorizar/proposta")
+      setLoanProposals(fgtsTables);
+      toast.success("Pré cadastro realizado com sucesso.");
+      router.push("/emprestimo/fgts/autorizar/proposta");
     } catch (error) {
       if (
         axios.isAxiosError(error) &&

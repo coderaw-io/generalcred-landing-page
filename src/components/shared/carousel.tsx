@@ -46,7 +46,7 @@ const slides = [
 
 export function CarouselSection() {
   return (
-    <div data-aos="fade-left">
+    <div>
       <Carousel className="py-12 w-full max-w-4xl mx-auto rounded-[0.3rem]">
         <CarouselContent className="rounded-[0.3rem]">
           {slides.map((slide, index) => (

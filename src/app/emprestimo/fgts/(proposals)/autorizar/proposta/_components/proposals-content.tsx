@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { AuthorizationSection } from "./authorization-section";
 import { ProposalsSection } from "./proposals-section";
 import { Stepper } from "./stepper";
 
@@ -16,10 +15,6 @@ export function ProposalsContent() {
       <form>
         <Stepper
           steps={[
-            { 
-              label: "Autorização necessária", 
-              content: <AuthorizationSection /> 
-            },
             {
               label: "Propostas disponíveis",
               content: <ProposalsSection />
